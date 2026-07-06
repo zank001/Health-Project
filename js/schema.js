@@ -57,40 +57,11 @@ window.MONOGRAPH_SCHEMA = [
     ],
   },
   {
-    id: 'preparations', en: 'Preparations', th: 'รูปแบบผลิตภัณฑ์',
-    children: [
-      {
-        id: 'prepUS', en: 'US', th: 'สหรัฐอเมริกา',
-        children: [
-          { id: 'dosageForms', en: 'Dosage Forms', th: 'รูปแบบผลิตภัณฑ์', hint: 'เช่น แคปซูล 500 มก., ผงชง, สารสกัดเข้มข้น (ระบุความแรง/ปริมาณสารสำคัญ)' },
-          { id: 'genericAvailable', en: 'Generic Equivalent Available', th: 'ผลิตภัณฑ์เทียบเท่าทั่วไป', hint: 'มีผลิตภัณฑ์ทั่วไป/หลายยี่ห้อจำหน่ายหรือไม่' },
-          { id: 'pricing', en: 'Pricing', th: 'ราคา', hint: 'ช่วงราคาโดยประมาณ (ระบุวันที่อ้างอิงราคา)' },
-        ],
-      },
-      { id: 'prepCanada', en: 'Canada: Dosage Forms', th: 'แคนาดา: รูปแบบผลิตภัณฑ์', hint: 'รูปแบบผลิตภัณฑ์ที่จำหน่ายในแคนาดา' },
-    ],
-  },
-  {
-    id: 'administration', en: 'Administration', th: 'วิธีรับประทาน/วิธีใช้',
-    children: [
-      { id: 'adminAdult', en: 'Adult: Administration', th: 'ผู้ใหญ่: วิธีใช้', hint: 'เช่น รับประทานพร้อมอาหารเพื่อลดการระคายเคืองกระเพาะ' },
-      { id: 'adminPediatric', en: 'Pediatric: Administration', th: 'เด็ก: วิธีใช้', hint: 'วิธีใช้เฉพาะในเด็ก (ถ้ามี)' },
-    ],
-  },
-  {
-    id: 'storageStability', en: 'Storage/Stability', th: 'การเก็บรักษา/ความคงตัว',
-    hint: 'อุณหภูมิ ความชื้น แสง และอายุหลังเปิดใช้',
-  },
-  {
     id: 'uses', en: 'Uses', th: 'ข้อบ่งใช้/การนำไปใช้',
     children: [
       { id: 'labeledIndications', en: 'Labeled Indications', th: 'ข้อบ่งใช้ตามฉลาก/ที่ขึ้นทะเบียน', hint: 'สรรพคุณที่ได้รับอนุญาตตามฉลาก/ทะเบียน (เช่น ตามบัญชียาหลักแห่งชาติด้านสมุนไพร)' },
       { id: 'offLabelAdult', en: 'Off-Label: Adult', th: 'การใช้นอกเหนือฉลาก: ผู้ใหญ่', hint: 'การใช้ที่มีหลักฐานสนับสนุนแต่ยังไม่ได้ขึ้นทะเบียน ระบุระดับหลักฐานประกอบ' },
     ],
-  },
-  {
-    id: 'safetyIssues', en: 'Medication Safety Issues', th: 'ประเด็นความปลอดภัยของผลิตภัณฑ์',
-    hint: 'เช่น ชื่อพ้อง–มองคล้าย (LASA), การปลอมปนยาแผนปัจจุบัน, โลหะหนัก, ความสับสนของชนิดพืช',
   },
   {
     id: 'interactions', en: 'Interactions', th: 'อันตรกิริยา',
@@ -128,10 +99,6 @@ window.MONOGRAPH_SCHEMA = [
   {
     id: 'counselingPoints', en: 'Patient Counseling Points', th: 'คำแนะนำสำหรับผู้ใช้ผลิตภัณฑ์',
     hint: 'ประเด็นที่ควรสื่อสารกับผู้ใช้ เช่น วิธีรับประทาน สัญญาณอันตรายที่ต้องหยุดใช้และพบแพทย์',
-  },
-  {
-    id: 'brandInternational', en: 'Brand Names: International', th: 'ชื่อการค้า: นานาชาติ',
-    hint: 'ตัวอย่างชื่อการค้าในประเทศอื่น ๆ รวมถึงประเทศไทย',
   },
   {
     id: 'references', en: 'REFERENCES', th: 'เอกสารอ้างอิง', references: true,
