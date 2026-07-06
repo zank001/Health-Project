@@ -28,40 +28,57 @@ HERB_DB.register({
     },
 
     adultDosing: [
-      { th: 'ตามบัญชียาหลักแห่งชาติด้านสมุนไพรของประเทศไทย:', en: 'Per the Thai National List of Herbal Medicinal Products:' },
+      {
+        th: 'ขนาดที่ใช้แตกต่างกันตามสูตรตำรับ โดยมักคิดจากปริมาณ **andrographolide รวมต่อวัน** จากข้อมูล RCT / systematic review / meta-analysis ในการรักษาการติดเชื้อทางเดินหายใจส่วนบน (URTI) andrographolide รวมอยู่ในช่วงประมาณ **48–360 มก./วัน** และขนาดที่แนะนำจาก review เภสัชจลนศาสตร์คือประมาณ **60 มก./วัน** [4,7]',
+        en: 'Doses vary by formulation and are usually based on **total daily andrographolide**. Across RCTs / systematic reviews / meta-analyses for upper respiratory tract infection (URTI), total andrographolide has ranged from about **48–360 mg/day**, with a pharmacokinetics-review-recommended dose of about **60 mg/day** [4,7]',
+      },
       {
         table: {
           headers: [
-            { th: 'ข้อบ่งใช้', en: 'Indication' },
-            { th: 'ขนาด (คิดเป็น andrographolide รวม)', en: 'Dose (as total andrographolide)' },
+            { th: 'รูปแบบ / แหล่งข้อมูล', en: 'Form / source' },
+            { th: 'ขนาดในผู้ใหญ่', en: 'Adult dose' },
           ],
           rows: [
             [
-              { th: 'บรรเทาอาการหวัด/เจ็บคอ', en: 'Relief of cold symptoms / sore throat' },
-              { th: 'andrographolide รวม 60–120 มก./วัน แบ่งให้วันละ 3–4 ครั้ง', en: 'Total andrographolide 60–120 mg/day, divided 3–4 times daily' },
+              { th: 'สารสกัดมาตรฐาน (URTI ตาม RCT/meta-analysis)', en: 'Standardized extract (URTI, per RCT / meta-analysis)' },
+              { th: 'andrographolide รวม ~60 มก./วัน แบ่งวันละ 2–3 ครั้ง นาน 5–10 วัน', en: 'Total andrographolide ~60 mg/day, divided 2–3 times daily, for 5–10 days' },
             ],
             [
-              { th: 'บรรเทาอาการท้องเสียชนิดไม่ติดเชื้อ', en: 'Relief of non-infectious diarrhea' },
-              { th: 'ตามขนาดที่ระบุบนฉลากผลิตภัณฑ์', en: 'As directed on the product label' },
+              { th: 'ผงเหง้าแห้ง (herba Andrographidis, ตาม WHO monograph)', en: 'Dried crude powder (herba Andrographidis, per WHO monograph)' },
+              { th: '2–6 กรัม/วัน (ขึ้นกับสูตรตำรับ)', en: '2–6 g/day (depending on the preparation)' },
+            ],
+            [
+              { th: 'บัญชียาหลักแห่งชาติด้านสมุนไพร (หวัด/เจ็บคอ)', en: 'Thai National List of Herbal Medicinal Products (cold / sore throat)' },
+              { th: 'andrographolide รวม 60–120 มก./วัน แบ่งวันละ 3–4 ครั้ง', en: 'Total andrographolide 60–120 mg/day, divided 3–4 times daily' },
             ],
           ],
         },
       },
       {
         note: {
-          th: 'ระยะเวลาการใช้เพื่อบรรเทาหวัดไม่ควรเกิน 5–7 วัน หากอาการไม่ดีขึ้นควรพบแพทย์',
-          en: 'Duration for cold relief should not exceed 5–7 days; if symptoms do not improve, consult a physician.',
+          th: 'ตัวอย่างผลิตภัณฑ์ที่ใช้ใน RCT: **Kan Jang®** (สารสกัดฟ้าทะลายโจร + *Eleutherococcus senticosus*) ให้ andrographolide ~60–85 มก./วัน; **KalmCold®** ให้ andrographolide รวม ~60 มก./วัน',
+          en: 'Examples of products used in RCTs: **Kan Jang®** (andrographis extract + *Eleutherococcus senticosus*) providing andrographolide ~60–85 mg/day; **KalmCold®** providing total andrographolide ~60 mg/day',
+        },
+      },
+      {
+        note: {
+          th: 'ระยะเวลาการใช้เพื่อบรรเทาหวัดโดยทั่วไป 5–10 วัน หากอาการไม่ดีขึ้นควรพบแพทย์',
+          en: 'Typical duration for cold relief is 5–10 days; if symptoms do not improve, consult a physician.',
         },
       },
     ],
+    adultKidney: {
+      th: 'ยังไม่มีการศึกษาเภสัชจลนศาสตร์หรือการปรับขนาดในผู้ป่วยไตบกพร่อง [7] ควรหลีกเลี่ยงหรือใช้ด้วยความระมัดระวังสูงในผู้ที่ไตบกพร่องระดับปานกลางถึงรุนแรง และติดตามการทำงานของไต โดยเฉพาะเมื่อใช้ขนาดสูงหรือใช้ต่อเนื่องเกิน 5–10 วัน [9]',
+      en: 'There are no pharmacokinetic or dose-adjustment studies in renal impairment [7]. Avoid or use with great caution in moderate-to-severe renal impairment, and monitor renal function, especially with high doses or use beyond 5–10 days [9]',
+    },
     adultLiver: {
-      th: 'มีรายงานภาวะตับอักเสบสัมพันธ์กับการใช้ ควรหลีกเลี่ยงในผู้ที่มีโรคตับ',
-      en: 'Hepatitis has been reported in association with use; avoid in people with liver disease.',
+      th: 'andrographolide ถูกเมแทบอไลต์ที่ตับ (phase I/II) และขับออกทางน้ำดีและปัสสาวะ แต่ยังไม่มีการศึกษาเภสัชจลนศาสตร์ในผู้ป่วยตับบกพร่อง [7] มีรายงานภาวะตับอักเสบ/พิษต่อตับสัมพันธ์กับการใช้ (เช่น รายงานความปลอดภัยของ TGA ออสเตรเลีย) จึงควรหลีกเลี่ยงในผู้ที่มีโรคตับระดับปานกลางถึงรุนแรง หรือใช้ภายใต้การดูแลของแพทย์พร้อมติดตามค่าการทำงานของตับ และหยุดใช้หากค่าเอนไซม์ตับสูงขึ้น [7,9]',
+      en: 'Andrographolide is hepatically metabolized (phase I/II) and excreted in bile and urine, but there are no pharmacokinetic studies in hepatic impairment [7]. Hepatitis/hepatotoxicity has been reported in association with use (e.g. the TGA Australia safety review); avoid in moderate-to-severe liver disease or use under medical supervision with liver-function monitoring, and stop if liver enzymes rise [7,9]',
     },
 
     pediatricDosing: {
-      th: 'ควรใช้ภายใต้คำแนะนำของแพทย์/เภสัชกร ข้อมูลความปลอดภัยในเด็กเล็กยังจำกัด',
-      en: 'Use only under the guidance of a physician/pharmacist; safety data in young children are limited.',
+      th: 'หลักฐานขนาดใช้ในเด็ก**จำกัด** และส่วนใหญ่มาจากสูตรผสม review เภสัชจลนศาสตร์เสนอขนาด andrographolide ประมาณ **30 มก./วัน** ในการรักษา URTI แต่ยัง**ไม่มี consensus ที่ชัดเจน** [7] แหล่งข้อมูลทางคลินิก (เช่น MSKCC) ระบุว่ายังไม่มีข้อมูลขนาด/ความปลอดภัยในเด็กที่เพียงพอ **ไม่แนะนำให้ผู้ปกครองใช้ในเด็กเองโดยไม่อยู่ภายใต้การดูแลของแพทย์/เภสัชกร** [9]',
+      en: 'Pediatric dosing evidence is **limited** and mostly derived from combination products. A pharmacokinetics review suggests total andrographolide about **30 mg/day** for URTI, but there is **no clear consensus** [7]. Clinical resources (e.g. MSKCC) note insufficient standardized dosing/safety data in children — **children should use it only under physician/pharmacist supervision** [9]',
     },
 
     adrSignificant: {
@@ -136,6 +153,9 @@ HERB_DB.register({
       'Hu XY, et al. Andrographis paniculata (Chuān Xīn Lián) for symptomatic relief of acute respiratory tract infections in adults and children: a systematic review and meta-analysis. PLoS One. 2017;12(8):e0181780. doi:10.1371/journal.pone.0181780',
       'Safety of Andrographis paniculata: a systematic review and meta-analysis. Pharmacoepidemiol Drug Saf. doi:10.1002/pds.5190',
       'บัญชียาหลักแห่งชาติด้านสมุนไพร กระทรวงสาธารณสุข ประเทศไทย. / National List of Herbal Medicinal Products, Ministry of Public Health, Thailand.',
+      'A comprehensive review on disposition kinetics and dosage of oral administration of Andrographis paniculata. Front Pharmacol. 2022.',
+      'World Health Organization. WHO monographs on selected medicinal plants, Vol. 2: Herba Andrographidis. Geneva: WHO; 2002.',
+      'Memorial Sloan Kettering Cancer Center (MSKCC). Andrographis. Integrative Medicine — About Herbs.',
     ],
   },
 });
