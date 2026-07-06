@@ -100,6 +100,27 @@ a { color: var(--link); }
 .topbar nav a:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
 .topbar nav a.active { background: rgba(255, 255, 255, 0.22); color: #fff; font-weight: 600; }
 
+.brand-tagline { color: rgba(255, 255, 255, 0.75); font-weight: 400; font-size: 0.85rem; }
+@media (max-width: 640px) { .brand-tagline { display: none; } }
+
+.lang-toggle {
+  margin-left: auto;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 5px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 46px;
+}
+.lang-toggle:hover { background: rgba(255, 255, 255, 0.26); }
+.lang-toggle:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+
 /* ---------- โครงหน้า ---------- */
 main#app {
   max-width: 1180px;

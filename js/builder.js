@@ -1,5 +1,5 @@
 /*
- * builder.js — สร้างฟอร์มกรอกข้อมูลจากโครงหัวข้อ (schema) โดยอัตโนมัติ
+ * builder.js — สร้างฟอร์มกรอกข้อมูลจากโครงหัวข้อ (schema) โดยอัตโนมัติ รองรับสองภาษา (ไทย/อังกฤษ)
  * และแปลงข้อมูลที่กรอกเป็นไฟล์ .js ที่พร้อมนำไปวางใน data/monographs/
  */
 (function () {
@@ -8,9 +8,13 @@
   var SCHEMA = window.MONOGRAPH_SCHEMA || [];
   var CATEGORIES = window.PRODUCT_CATEGORIES || {};
   var STATUS = window.ENTRY_STATUS || {};
+  var LANG = window.LANG;
+  function t(k) { return LANG.t(k); }
+
   var form = document.getElementById('mono-form');
   var output = document.getElementById('output');
   var toastEl = document.getElementById('toast');
+  var helpBody = document.getElementById('help-body');
 
   function el(tag, attrs, html) {
     var e = document.createElement(tag);
@@ -19,98 +23,103 @@
     return e;
   }
 
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   function toast(msg) {
     toastEl.textContent = msg;
     if (toast._t) clearTimeout(toast._t);
     toast._t = setTimeout(function () { toastEl.textContent = ''; }, 2600);
   }
 
+  /* ป้ายหัวข้อ (outline) ตามภาษา + คำแปลรอง */
+  function nodePrimary(node) { return LANG.get() === 'en' ? node.en : node.th; }
+  function nodeSecondary(node) { return LANG.get() === 'en' ? node.th : node.en; }
+
+  function field(type, id, label, hint) {
+    return '<div class="field"><label for="' + id + '">' + esc(label) + '</label>' +
+      '<input type="' + type + '" id="' + id + '">' +
+      (hint ? '<div class="hint">' + esc(hint) + '</div>' : '') + '</div>';
+  }
+
   /* ---------- ส่วนข้อมูลทั่วไป (metadata) ---------- */
   function buildMetaGroup() {
     var g = el('div', { class: 'form-group' });
-    g.appendChild(el('h2', null, 'ข้อมูลทั่วไป (General Information)'));
+    g.appendChild(el('h2', null, esc(t('bGeneralInfo'))));
 
     var catOpts = Object.keys(CATEGORIES).map(function (k) {
-      return '<option value="' + k + '">' + CATEGORIES[k].th + ' (' + CATEGORIES[k].en + ')</option>';
+      return '<option value="' + k + '">' + esc(window.pickLang(CATEGORIES[k])) + '</option>';
     }).join('');
     var statusOpts = Object.keys(STATUS).map(function (k) {
-      return '<option value="' + k + '">' + STATUS[k].th + '</option>';
+      return '<option value="' + k + '">' + esc(window.pickLang(STATUS[k])) + '</option>';
     }).join('');
 
     g.innerHTML +=
       '<div class="row2">' +
-      field('text', 'meta-id', 'รหัส (id) *', 'ใช้ a-z, ตัวเลข, ขีดกลาง — ต้องไม่ซ้ำ เช่น ginger') +
-      field('text', 'meta-updated', 'วันที่อัปเดต (YYYY-MM-DD)', '') +
+      field('text', 'meta-id', t('bId'), t('bIdHint')) +
+      field('text', 'meta-updated', t('bUpdated'), '') +
       '</div>' +
       '<div class="row2">' +
-      field('text', 'meta-nameTh', 'ชื่อไทย *', '') +
-      field('text', 'meta-nameEn', 'ชื่ออังกฤษ', '') +
+      field('text', 'meta-nameTh', t('bNameTh'), '') +
+      field('text', 'meta-nameEn', t('bNameEn'), '') +
       '</div>' +
       '<div class="row2">' +
-      field('text', 'meta-scientificName', 'ชื่อวิทยาศาสตร์', 'เช่น Zingiber officinale') +
-      field('text', 'meta-family', 'วงศ์ (Family)', '') +
+      field('text', 'meta-scientificName', t('bSci'), t('bSciHint')) +
+      field('text', 'meta-family', t('bFamily'), '') +
       '</div>' +
       '<div class="row2">' +
-      field('text', 'meta-partUsed', 'ส่วนที่ใช้', 'เช่น เหง้า, ใบ') +
-      '<div class="field"><label>หมวดหมู่ <span class="en-lbl">Category</span></label>' +
+      field('text', 'meta-partUsed', t('bPart'), t('bPartHint')) +
+      '<div class="field"><label>' + esc(t('bCategory')) + '</label>' +
       '<select id="meta-category">' + catOpts + '</select></div>' +
       '</div>' +
       '<div class="row2">' +
-      '<div class="field"><label>สถานะข้อมูล <span class="en-lbl">Status</span></label>' +
+      '<div class="field"><label>' + esc(t('bStatus')) + '</label>' +
       '<select id="meta-status">' + statusOpts + '</select></div>' +
-      field('text', 'meta-synonyms', 'ชื่อพ้อง/ชื่ออื่น', 'คั่นด้วยเครื่องหมายจุลภาค เช่น Ginger, ขิงแก่') +
+      field('text', 'meta-synonyms', t('bSynonyms'), t('bSynonymsHint')) +
       '</div>' +
-      '<div class="field"><label>ข้อความแจ้งเตือน (ALERTS) <span class="en-lbl">แสดงเป็นแบนเนอร์ด้านบน</span></label>' +
-      '<textarea id="meta-alerts" placeholder="กรอกแยกบรรทัดละ 1 รายการ"></textarea>' +
-      '<div class="hint">แต่ละบรรทัดจะกลายเป็น 1 หัวข้อแจ้งเตือน (เว้นว่างได้)</div></div>';
+      '<div class="field"><label for="meta-alerts">' + esc(t('bAlerts')) + '</label>' +
+      '<textarea id="meta-alerts"></textarea>' +
+      '<div class="hint">' + esc(t('bAlertsHint')) + '</div></div>';
 
     return g;
-  }
-
-  function field(type, id, label, hint) {
-    return '<div class="field"><label for="' + id + '">' + label + '</label>' +
-      '<input type="' + type + '" id="' + id + '">' +
-      (hint ? '<div class="hint">' + hint + '</div>' : '') + '</div>';
   }
 
   /* ---------- ช่องเนื้อหาแต่ละหัวข้อ (recursive) ---------- */
   function contentField(node, depth) {
     var wrap = el('div', { class: 'field' + (depth > 0 ? ' indent' : '') });
+    var lbl = '<label for="sec-' + node.id + '">' + esc(nodePrimary(node)) +
+      ' <span class="en-lbl">' + esc(nodeSecondary(node)) + '</span></label>';
     if (node.references) {
-      wrap.innerHTML =
-        '<label for="sec-' + node.id + '">' + node.en + ' <span class="en-lbl">' + node.th + '</span></label>' +
-        '<textarea id="sec-' + node.id + '" data-ref="1" placeholder="กรอกอ้างอิงแยกบรรทัดละ 1 รายการ"></textarea>' +
-        '<div class="hint">' + (node.hint || '') + ' — แต่ละบรรทัด = 1 รายการอ้างอิง</div>';
-    } else {
-      wrap.innerHTML =
-        '<label for="sec-' + node.id + '">' + node.en + ' <span class="en-lbl">' + node.th + '</span></label>' +
+      wrap.innerHTML = lbl +
         '<textarea id="sec-' + node.id + '"></textarea>' +
-        (node.hint ? '<div class="hint">' + node.hint + '</div>' : '');
+        '<div class="hint">' + esc((node.hint || '')) + ' — ' + esc(t('bRefsHint')) + '</div>';
+    } else {
+      wrap.innerHTML = lbl +
+        '<textarea id="sec-' + node.id + '"></textarea>' +
+        (node.hint ? '<div class="hint">' + esc(node.hint) + '</div>' : '');
     }
     return wrap;
   }
 
   function buildSectionGroup(node) {
     var g = el('div', { class: 'form-group' });
-    g.appendChild(el('h2', null, node.en + ' — ' + node.th));
-
-    // เนื้อหาของหัวข้อหลักเอง (ถ้า schema ตั้งใจให้มี เช่น หัวข้อที่ไม่มีลูก)
+    g.appendChild(el('h2', null, esc(nodePrimary(node)) + ' — ' + esc(nodeSecondary(node))));
     appendNodeFields(g, node, 0);
     return g;
   }
 
   function appendNodeFields(container, node, depth) {
     var hasKids = node.children && node.children.length;
-    // หัวข้อที่ไม่มีลูก หรือหัวข้อ references → มีช่องกรอกของตัวเอง
     if (!hasKids || node.references) {
       container.appendChild(contentField(node, depth));
     } else {
-      // หัวข้อที่มีลูก: อาจมีเนื้อหานำ (intro) ของตัวเองด้วย — ให้ช่องเล็ก ๆ
       var intro = el('div', { class: 'field' + (depth > 0 ? ' indent' : '') });
       intro.innerHTML =
-        '<label for="sec-' + node.id + '">' + node.en + ' <span class="en-lbl">' + node.th + ' — เนื้อหานำ (ถ้ามี)</span></label>' +
+        '<label for="sec-' + node.id + '">' + esc(nodePrimary(node)) +
+        ' <span class="en-lbl">' + esc(nodeSecondary(node)) + ' — ' + esc(t('bIntro')) + '</span></label>' +
         '<textarea id="sec-' + node.id + '"></textarea>' +
-        (node.hint ? '<div class="hint">' + node.hint + '</div>' : '');
+        (node.hint ? '<div class="hint">' + esc(node.hint) + '</div>' : '');
       container.appendChild(intro);
       node.children.forEach(function (c) { appendNodeFields(container, c, depth + 1); });
     }
@@ -118,10 +127,49 @@
 
   /* ---------- สร้างฟอร์มทั้งหมด ---------- */
   function renderForm() {
+    form.innerHTML = '';
     form.appendChild(buildMetaGroup());
     SCHEMA.forEach(function (node) {
       if (node.id === 'alerts') return; // จัดการใน metadata แล้ว
       form.appendChild(buildSectionGroup(node));
+    });
+  }
+
+  /* ---------- คำอธิบายวิธีใช้ (help) แบบสองภาษา ---------- */
+  function renderHelp() {
+    if (!helpBody) return;
+    if (LANG.get() === 'en') {
+      helpBody.innerHTML =
+        '<ol>' +
+        '<li>Fill in the fields below (at minimum an <b>ID</b> and a name)</li>' +
+        '<li>Click <b>“Generate file”</b>, then <b>“Download .js”</b></li>' +
+        '<li>Put the file in the <code>data/monographs/</code> folder</li>' +
+        '<li>Add its path in <code>data/manifest.js</code>, e.g. <code>\'data/monographs/ginger.js\'</code></li>' +
+        '<li>Refresh the page — the new entry appears</li>' +
+        '</ol>' +
+        '<p class="muted">Content formatting: blank line = new paragraph · line starting with <code>- </code> = bullet · <code>## </code> = subheading · <code>**bold**</code> · citation <code>[1]</code></p>';
+    } else {
+      helpBody.innerHTML =
+        '<ol>' +
+        '<li>กรอกข้อมูลด้านล่าง (อย่างน้อยควรมี <b>รหัส (id)</b> และ <b>ชื่อ</b>)</li>' +
+        '<li>กด <b>“สร้างไฟล์ข้อมูล”</b> แล้วกด <b>“ดาวน์โหลด .js”</b></li>' +
+        '<li>นำไฟล์ไปวางในโฟลเดอร์ <code>data/monographs/</code></li>' +
+        '<li>เพิ่มพาธไฟล์ลงใน <code>data/manifest.js</code> เช่น <code>\'data/monographs/ginger.js\'</code></li>' +
+        '<li>รีเฟรชหน้าเว็บ — รายการใหม่จะปรากฏในระบบ</li>' +
+        '</ol>' +
+        '<p class="muted">รูปแบบข้อความ: บรรทัดว่าง = ย่อหน้าใหม่ · ขึ้นต้น <code>- </code> = รายการจุด · <code>## </code> = หัวข้อย่อย · <code>**หนา**</code> · อ้างอิง <code>[1]</code></p>';
+    }
+  }
+
+  /* ---------- อ่าน/คืนค่าฟอร์ม (ใช้ตอนสลับภาษาเพื่อไม่ให้ข้อมูลหาย) ---------- */
+  function snapshot() {
+    var data = {};
+    form.querySelectorAll('input, textarea, select').forEach(function (e) { data[e.id] = e.value; });
+    return data;
+  }
+  function restore(data) {
+    form.querySelectorAll('input, textarea, select').forEach(function (e) {
+      if (data[e.id] !== undefined) e.value = data[e.id];
     });
   }
 
@@ -193,8 +241,7 @@
     lines.push("  synonyms: " + serializeArray(data.synonyms, '  ') + ",");
     lines.push("  alerts: " + serializeArray(data.alerts, '  ') + ",");
     lines.push("  sections: {");
-    var keys = Object.keys(data.sections);
-    keys.forEach(function (k) {
+    Object.keys(data.sections).forEach(function (k) {
       var v = data.sections[k];
       if (Array.isArray(v)) {
         lines.push("    " + k + ": " + serializeArray(v, '    ') + ",");
@@ -212,16 +259,14 @@
 
   document.getElementById('btn-generate').addEventListener('click', function () {
     lastData = collectData();
-    if (!lastData.nameTh && !lastData.nameEn) {
-      toast('กรุณากรอกอย่างน้อยชื่อไทยหรือชื่ออังกฤษ');
-    }
+    if (!lastData.nameTh && !lastData.nameEn) toast(t('bNeedName'));
     output.value = generateCode(lastData);
-    toast('สร้างโค้ดเรียบร้อย — ตรวจสอบด้านล่าง');
+    toast(t('bGeneratedOk'));
     output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 
   document.getElementById('btn-download').addEventListener('click', function () {
-    if (!output.value) { toast('กด “สร้างไฟล์ข้อมูล” ก่อน'); return; }
+    if (!output.value) { toast(t('bGenFirst')); return; }
     var data = lastData || collectData();
     var blob = new Blob([output.value], { type: 'text/javascript;charset=utf-8' });
     var a = document.createElement('a');
@@ -231,29 +276,51 @@
     a.click();
     document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-    toast('ดาวน์โหลด ' + data.id + '.js แล้ว — อย่าลืมเพิ่มพาธใน manifest.js');
+    toast(data.id + '.js — ' + t('bDownloaded'));
   });
 
   document.getElementById('btn-copy').addEventListener('click', function () {
-    if (!output.value) { toast('กด “สร้างไฟล์ข้อมูล” ก่อน'); return; }
+    if (!output.value) { toast(t('bGenFirst')); return; }
     output.select();
     var ok = false;
     try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(output.value).then(function () { toast('คัดลอกแล้ว'); }, function () {});
+      navigator.clipboard.writeText(output.value).then(function () { toast(t('bCopied')); }, function () {});
     }
-    if (ok) toast('คัดลอกแล้ว');
+    if (ok) toast(t('bCopied'));
   });
 
   document.getElementById('btn-reset').addEventListener('click', function () {
-    if (!confirm('ล้างข้อมูลที่กรอกทั้งหมด?')) return;
+    if (!confirm(t('bConfirmReset'))) return;
     form.querySelectorAll('input, textarea').forEach(function (e) { e.value = ''; });
     form.querySelectorAll('select').forEach(function (e) { e.selectedIndex = 0; });
     output.value = '';
     lastData = null;
-    toast('ล้างฟอร์มแล้ว');
+    toast(t('bCleared'));
     window.scrollTo(0, 0);
   });
 
+  /* ---------- ปุ่มสลับภาษา (คงข้อมูลที่กรอกไว้) ---------- */
+  function applyLang() {
+    window.applyStaticI18n();
+    output.setAttribute('placeholder', t('bOutputPlaceholder'));
+    renderHelp();
+  }
+
+  function setupLangToggle() {
+    var toggle = document.getElementById('lang-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', function () {
+      var snap = snapshot();
+      LANG.set(LANG.other());
+      applyLang();
+      renderForm();
+      restore(snap);
+    });
+  }
+
+  /* ---------- เริ่มต้น ---------- */
+  applyLang();
+  setupLangToggle();
   renderForm();
 })();

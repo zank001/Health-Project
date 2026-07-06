@@ -153,7 +153,7 @@ window.PRODUCT_CATEGORIES = {
 
 /* สถานะความสมบูรณ์ของข้อมูลแต่ละรายการ */
 window.ENTRY_STATUS = {
-  'draft':    { th: 'ฉบับร่าง',        cls: 'status-draft' },
-  'review':   { th: 'รอตรวจทาน',      cls: 'status-review' },
-  'complete': { th: 'ตรวจทานแล้ว',    cls: 'status-complete' },
+  'draft':    { th: 'ฉบับร่าง',      en: 'Draft',        cls: 'status-draft' },
+  'review':   { th: 'รอตรวจทาน',    en: 'In review',    cls: 'status-review' },
+  'complete': { th: 'ตรวจทานแล้ว',  en: 'Reviewed',     cls: 'status-complete' },
 };

@@ -1,5 +1,5 @@
 /*
- * app.js — ตัวควบคุมหลักของแอป (routing, ค้นหา, แสดงโมโนกราฟ)
+ * app.js — ตัวควบคุมหลักของแอป (routing, ค้นหา, แสดงโมโนกราฟ) — รองรับสองภาษา (ไทย/อังกฤษ)
  * ไม่ต้องใช้ไลบรารีภายนอก ทำงานได้ทั้งเปิดไฟล์ตรง ๆ (file://) และผ่านเว็บเซิร์ฟเวอร์
  */
 (function () {
@@ -9,6 +9,8 @@
   var SCHEMA = window.MONOGRAPH_SCHEMA || [];
   var CATEGORIES = window.PRODUCT_CATEGORIES || {};
   var STATUS = window.ENTRY_STATUS || {};
+  var LANG = window.LANG;
+  function t(k) { return LANG.t(k); }
 
   /* ============================================================
      ยูทิลิตี้
@@ -24,20 +26,32 @@
 
   function catLabel(key) {
     var c = CATEGORIES[key];
-    return c ? c.th : key;
+    return c ? window.pickLang(c) : key;
   }
 
   function statusBadge(key) {
     var st = STATUS[key] || STATUS.draft;
-    return '<span class="badge ' + esc(st.cls) + '">' + esc(st.th) + '</span>';
+    return '<span class="badge ' + esc(st.cls) + '">' + esc(window.pickLang(st)) + '</span>';
   }
+
+  /* ชื่อรายการตามภาษาที่เลือก (มีตัวสำรอง) */
+  function primaryName(m) {
+    return LANG.get() === 'en' ? (m.nameEn || m.nameTh) : (m.nameTh || m.nameEn);
+  }
+  function secondaryName(m) {
+    var other = LANG.get() === 'en' ? m.nameTh : m.nameEn;
+    return (other && other !== primaryName(m)) ? other : '';
+  }
+
+  /* ชื่อหัวข้อ (outline) ตามภาษา + คำแปลรอง */
+  function secTitle(node) { return LANG.get() === 'en' ? node.en : node.th; }
+  function secSub(node) { return LANG.get() === 'en' ? node.th : node.en; }
 
   /* จัดรูปแบบข้อความภายในบรรทัด: escape ก่อน แล้วค่อยแปลง **หนา** *เอียง* และอ้างอิง [1] */
   function inlineFormat(s) {
     var out = esc(s);
     out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     out = out.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
-    // อ้างอิงรูปแบบ [1], [1,2], [1-3] → ลิงก์ไปยังรายการอ้างอิง
     out = out.replace(/\[(\d+(?:\s*[,–-]\s*\d+)*)\]/g, function (m, inner) {
       var linked = inner.replace(/\d+/g, function (n) {
         return '<a class="ref-link" data-ref="' + n + '">' + n + '</a>';
@@ -49,17 +63,12 @@
 
   /*
    * แปลงข้อความหลายบรรทัด (markdown อย่างง่าย) เป็น HTML
-   *   - บรรทัดว่าง        = ขึ้นย่อหน้าใหม่
-   *   - "## หัวข้อ"        = หัวข้อย่อยในเนื้อหา
-   *   - "- รายการ"        = รายการแบบจุด
-   *   - "1. รายการ"       = รายการแบบเลขลำดับ
-   *   - **หนา** *เอียง*   = ตัวหนา/ตัวเอียง
-   *   - [1]               = ลิงก์อ้างอิง
+   *   บรรทัดว่าง = ย่อหน้าใหม่ | "## หัวข้อ" | "- จุด" | "1. ลำดับ" | **หนา** *เอียง* | อ้างอิง [1]
    */
   function renderTextBlock(str) {
     var lines = String(str).replace(/\r\n/g, '\n').split('\n');
     var html = [];
-    var list = null;   // { type: 'ul'|'ol', items: [] }
+    var list = null;
     var para = [];
 
     function flushPara() {
@@ -107,47 +116,49 @@
     return html.join('');
   }
 
-  /* แปลง block แบบ object เช่น {note:...}, {table:{headers,rows}} */
+  /* แปลง block แบบ object เช่น {note:...}, {table:{headers,rows}} หรือเนื้อหาสองภาษา {th,en} */
   function renderBlockObject(b) {
     if (b == null) return '';
+    if (window.isLocalizedBlock(b)) return renderContent(window.pickLang(b));
     if (typeof b === 'string') return renderTextBlock(b);
-    if (b.h) return '<h4 class="content-subhead">' + inlineFormat(b.h) + '</h4>';
-    if (b.p) return '<p>' + inlineFormat(b.p) + '</p>';
-    if (b.note) return '<div class="content-note">' + renderTextBlock(b.note) + '</div>';
+    if (b.h) return '<h4 class="content-subhead">' + inlineFormat(window.pickLang(b.h)) + '</h4>';
+    if (b.p) return '<p>' + inlineFormat(window.pickLang(b.p)) + '</p>';
+    if (b.note) return '<div class="content-note">' + renderTextBlock(window.pickLang(b.note)) + '</div>';
     if (b.ul) {
-      return '<ul>' + b.ul.map(function (i) { return '<li>' + inlineFormat(i) + '</li>'; }).join('') + '</ul>';
+      return '<ul>' + b.ul.map(function (i) { return '<li>' + inlineFormat(window.pickLang(i)) + '</li>'; }).join('') + '</ul>';
     }
     if (b.ol) {
-      return '<ol>' + b.ol.map(function (i) { return '<li>' + inlineFormat(i) + '</li>'; }).join('') + '</ol>';
+      return '<ol>' + b.ol.map(function (i) { return '<li>' + inlineFormat(window.pickLang(i)) + '</li>'; }).join('') + '</ol>';
     }
     if (b.table) {
-      var t = b.table;
-      var head = (t.headers && t.headers.length)
-        ? '<thead><tr>' + t.headers.map(function (h) { return '<th>' + inlineFormat(h) + '</th>'; }).join('') + '</tr></thead>'
+      var tb = b.table;
+      var head = (tb.headers && tb.headers.length)
+        ? '<thead><tr>' + tb.headers.map(function (h) { return '<th>' + inlineFormat(window.pickLang(h)) + '</th>'; }).join('') + '</tr></thead>'
         : '';
-      var body = '<tbody>' + (t.rows || []).map(function (row) {
-        return '<tr>' + row.map(function (c) { return '<td>' + inlineFormat(c) + '</td>'; }).join('') + '</tr>';
+      var body = '<tbody>' + (tb.rows || []).map(function (row) {
+        return '<tr>' + row.map(function (c) { return '<td>' + inlineFormat(window.pickLang(c)) + '</td>'; }).join('') + '</tr>';
       }).join('') + '</tbody>';
       return '<div class="content-table-wrap"><table class="content-table">' + head + body + '</table></div>';
     }
     return '';
   }
 
-  /* เนื้อหาหัวข้อ: รองรับ string หรือ array ของ string/block object */
+  /* เนื้อหาหัวข้อ: รองรับ string / array / block object / เนื้อหาสองภาษา {th,en} */
   function renderContent(content) {
+    content = window.localizeVal(content);
     if (content == null) return '';
     if (Array.isArray(content)) return content.map(renderBlockObject).join('');
     return renderBlockObject(content);
   }
 
   function hasContent(content) {
+    content = window.localizeVal(content);
     if (content == null) return false;
     if (typeof content === 'string') return content.trim().length > 0;
     if (Array.isArray(content)) return content.length > 0;
     return true;
   }
 
-  /* หัวข้อนี้ (รวมลูกทั้งหมด) มีเนื้อหาหรือไม่ */
   function nodeHasContent(node, sections) {
     if (hasContent(sections[node.id])) return true;
     if (node.children) {
@@ -183,7 +194,7 @@
   }
 
   /* ============================================================
-     ค้นหา
+     ค้นหา (ค้นได้ทุกภาษาเสมอ)
      ============================================================ */
   function searchItems(q) {
     q = norm(q);
@@ -202,7 +213,7 @@
       if (best > 0) scored.push({ m: m, score: best });
     });
     scored.sort(function (a, b) {
-      return b.score - a.score || String(a.m.nameTh).localeCompare(String(b.m.nameTh), 'th');
+      return b.score - a.score || String(primaryName(a.m)).localeCompare(String(primaryName(b.m)));
     });
     return scored.map(function (x) { return x.m; });
   }
@@ -243,9 +254,10 @@
 
     var catCards = Object.keys(CATEGORIES).map(function (key) {
       var n = catCounts[key] || 0;
+      var c = CATEGORIES[key];
       return '<a class="cat-card" href="#/list?cat=' + encodeURIComponent(key) + '">' +
-        '<span><span class="cat-name">' + esc(CATEGORIES[key].th) + '</span><br>' +
-        '<span class="cat-sub">' + esc(CATEGORIES[key].en) + '</span></span>' +
+        '<span><span class="cat-name">' + esc(window.pickLang(c)) + '</span><br>' +
+        '<span class="cat-sub">' + esc(LANG.get() === 'en' ? c.th : c.en) + '</span></span>' +
         '<span class="cat-count">' + n + '</span></a>';
     }).join('');
 
@@ -256,24 +268,24 @@
 
     var recentHtml = recent.length
       ? '<div class="item-grid">' + recent.map(itemCard).join('') + '</div>'
-      : '<div class="empty-state">ยังไม่มีข้อมูลในระบบ — เริ่มเพิ่มได้จากหน้า “เพิ่มข้อมูล”</div>';
+      : '<div class="empty-state">' + esc(t('emptyDb')) + '</div>';
 
     app.innerHTML =
       '<div class="hero">' +
-      '  <h1>🌿 คลังข้อมูลอาหารเสริมและสมุนไพร</h1>' +
-      '  <p class="subtitle">ฐานข้อมูลโมโนกราฟผลิตภัณฑ์เสริมอาหารและสมุนไพร (ไม่ใช่ยา) โครงหัวข้อตามรูปแบบ UpToDate</p>' +
+      '  <h1>' + esc(t('heroTitle')) + '</h1>' +
+      '  <p class="subtitle">' + esc(t('heroSubtitle')) + '</p>' +
       '  <div class="search-wrap">' +
-      '    <input type="search" class="search-input" id="home-search" placeholder="ค้นหาชื่อไทย / อังกฤษ / ชื่อวิทยาศาสตร์ / ชื่อพ้อง…" autocomplete="off">' +
+      '    <input type="search" class="search-input" id="home-search" placeholder="' + esc(t('searchPlaceholder')) + '" autocomplete="off">' +
       '    <div class="search-suggest" id="home-suggest" hidden></div>' +
       '  </div>' +
       '  <div class="stat-row">' +
-      '    <span class="stat-chip"><b>' + total + '</b> รายการทั้งหมด</span>' +
-      '    <span class="stat-chip"><b>' + complete + '</b> ตรวจทานแล้ว</span>' +
-      '    <span class="stat-chip"><b>' + SCHEMA.length + '</b> หัวข้อต่อโมโนกราฟ</span>' +
+      '    <span class="stat-chip"><b>' + total + '</b> ' + esc(t('statTotal')) + '</span>' +
+      '    <span class="stat-chip"><b>' + complete + '</b> ' + esc(t('statComplete')) + '</span>' +
+      '    <span class="stat-chip"><b>' + SCHEMA.length + '</b> ' + esc(t('statSections')) + '</span>' +
       '  </div>' +
       '</div>' +
-      '<div class="home-section"><h2>เรียกดูตามหมวดหมู่</h2><div class="cat-grid">' + catCards + '</div></div>' +
-      '<div class="home-section"><h2>อัปเดตล่าสุด</h2>' + recentHtml + '</div>';
+      '<div class="home-section"><h2>' + esc(t('browseByCategory')) + '</h2><div class="cat-grid">' + catCards + '</div></div>' +
+      '<div class="home-section"><h2>' + esc(t('recentlyUpdated')) + '</h2>' + recentHtml + '</div>';
 
     setupHomeSearch();
   }
@@ -288,13 +300,14 @@
       if (!q) { box.hidden = true; box.innerHTML = ''; return; }
       var results = searchItems(q).slice(0, 8);
       if (!results.length) {
-        box.innerHTML = '<a><span class="s-sub">ไม่พบรายการที่ตรงกับ “' + esc(q) + '”</span></a>';
+        box.innerHTML = '<a><span class="s-sub">' + esc(t('noResults')) + '</span></a>';
       } else {
         box.innerHTML = results.map(function (m) {
+          var sec = secondaryName(m);
           return '<a href="#/item/' + encodeURIComponent(m.id) + '">' +
-            '<span class="s-name">' + esc(m.nameTh || m.nameEn) + '</span> ' +
-            '<span class="s-sub">' + esc(m.nameEn || '') +
-            (m.scientificName ? ' · ' + esc(m.scientificName) : '') + '</span></a>';
+            '<span class="s-name">' + esc(primaryName(m)) + '</span> ' +
+            '<span class="s-sub">' + esc(sec) +
+            (m.scientificName ? (sec ? ' · ' : '') + esc(m.scientificName) : '') + '</span></a>';
         }).join('');
       }
       box.hidden = false;
@@ -317,9 +330,10 @@
      หน้ารายการ
      ============================================================ */
   function itemCard(m) {
+    var sec = secondaryName(m);
     return '<a class="item-card" href="#/item/' + encodeURIComponent(m.id) + '">' +
-      '<h3>' + esc(m.nameTh || m.nameEn) + '</h3>' +
-      '<p class="en-name">' + esc(m.nameEn || '') + '</p>' +
+      '<h3>' + esc(primaryName(m)) + '</h3>' +
+      (sec ? '<p class="en-name">' + esc(sec) + '</p>' : '') +
       (m.scientificName ? '<div class="sci-name">' + esc(m.scientificName) + '</div>' : '') +
       '<div class="badge-row">' +
       '<span class="badge badge-cat">' + esc(catLabel(m.category)) + '</span>' +
@@ -343,27 +357,30 @@
       });
     }
 
-    var catOptions = '<option value="">ทุกหมวดหมู่</option>' + Object.keys(CATEGORIES).map(function (key) {
+    var catOptions = '<option value="">' + esc(t('allCategories')) + '</option>' + Object.keys(CATEGORIES).map(function (key) {
+      var c = CATEGORIES[key];
       return '<option value="' + esc(key) + '"' + (key === cat ? ' selected' : '') + '>' +
-        esc(CATEGORIES[key].th) + ' (' + esc(CATEGORIES[key].en) + ')</option>';
+        esc(window.pickLang(c)) + '</option>';
     }).join('');
 
     var grid = results.length
       ? '<div class="item-grid">' + results.map(itemCard).join('') + '</div>'
-      : '<div class="empty-state">ไม่พบรายการที่ตรงกับเงื่อนไข</div>';
+      : '<div class="empty-state">' + esc(t('noResults')) + '</div>';
+
+    var unit = LANG.get() === 'en' ? (results.length === 1 ? ' entry' : ' entries') : ' รายการ';
 
     app.innerHTML =
-      '<div class="page-head"><h1>รายการทั้งหมด</h1>' +
-      '<p>เรียกดูและค้นหาโมโนกราฟอาหารเสริมและสมุนไพรทั้งหมดในระบบ</p></div>' +
+      '<div class="page-head"><h1>' + esc(t('listTitle')) + '</h1>' +
+      '<p>' + esc(t('listSubtitle')) + '</p></div>' +
       '<div class="filter-bar">' +
-      '  <input type="search" id="list-search" placeholder="ค้นหา…" value="' + esc(q) + '">' +
+      '  <input type="search" id="list-search" placeholder="' + esc(t('searchShort')) + '" value="' + esc(q) + '">' +
       '  <select id="list-cat">' + catOptions + '</select>' +
       '  <select id="list-sort">' +
-      '    <option value="th"' + (sort === 'th' ? ' selected' : '') + '>เรียงตามชื่อไทย</option>' +
-      '    <option value="en"' + (sort === 'en' ? ' selected' : '') + '>เรียงตามชื่ออังกฤษ</option>' +
-      '    <option value="updated"' + (sort === 'updated' ? ' selected' : '') + '>อัปเดตล่าสุด</option>' +
+      '    <option value="th"' + (sort === 'th' ? ' selected' : '') + '>' + esc(t('sortTh')) + '</option>' +
+      '    <option value="en"' + (sort === 'en' ? ' selected' : '') + '>' + esc(t('sortEn')) + '</option>' +
+      '    <option value="updated"' + (sort === 'updated' ? ' selected' : '') + '>' + esc(t('sortUpdated')) + '</option>' +
       '  </select>' +
-      '  <span class="result-count">' + results.length + ' รายการ</span>' +
+      '  <span class="result-count">' + results.length + unit + '</span>' +
       '</div>' + grid;
 
     function apply() {
@@ -396,14 +413,14 @@
     var filled = nodeHasContent(node, sections);
     var cls = filled ? '' : ' class="toc-empty"';
     var link = '<a data-anchor="sec-' + esc(node.id) + '"' + cls + '>' +
-      '<span class="toc-en">' + esc(node.en) + '</span>' +
-      '<span class="toc-th">' + esc(node.th) + '</span></a>';
+      '<span class="toc-en">' + esc(secTitle(node)) + '</span>' +
+      '<span class="toc-th">' + esc(secSub(node)) + '</span></a>';
     var kids = '';
     if (node.children && node.children.length) {
       kids = '<ul>' + node.children.map(function (c) {
         var cFilled = nodeHasContent(c, sections);
         return '<li><a data-anchor="sec-' + esc(c.id) + '"' + (cFilled ? '' : ' class="toc-empty"') + '>' +
-          '<span class="toc-en">' + esc(c.en) + '</span></a></li>';
+          '<span class="toc-en">' + esc(secTitle(c)) + '</span></a></li>';
       }).join('') + '</ul>';
     }
     return '<li>' + link + kids + '</li>';
@@ -421,18 +438,19 @@
     var hTag = level <= 1 ? 'h3' : 'h4';
     var body = own
       ? renderContent(sections[node.id])
-      : (node.children && node.children.length ? '' : '<p class="empty-note">— ยังไม่มีข้อมูล (จะเพิ่มในภายหลัง) —</p>');
+      : (node.children && node.children.length ? '' : '<p class="empty-note">' + esc(t('emptyNote')) + '</p>');
 
     return '<div class="subsection" id="sec-' + esc(node.id) + '">' +
-      '<' + hTag + '>' + esc(node.en) + '<span class="sub-th">' + esc(node.th) + '</span></' + hTag + '>' +
+      '<' + hTag + '>' + esc(secTitle(node)) + '<span class="sub-th">' + esc(secSub(node)) + '</span></' + hTag + '>' +
       body + kidsHtml + '</div>';
   }
 
   function renderReferences(refs) {
-    if (!hasContent(refs)) return showEmpty ? '<p class="empty-note">— ยังไม่มีข้อมูล (จะเพิ่มในภายหลัง) —</p>' : '';
+    if (!hasContent(refs)) return showEmpty ? '<p class="empty-note">' + esc(t('emptyNote')) + '</p>' : '';
+    refs = window.localizeVal(refs);
     if (typeof refs === 'string') return renderContent(refs);
     return '<ol class="refs">' + refs.map(function (r, i) {
-      return '<li id="ref-' + (i + 1) + '">' + inlineFormat(r) + '</li>';
+      return '<li id="ref-' + (i + 1) + '">' + inlineFormat(window.pickLang(r)) + '</li>';
     }).join('') + '</ol>';
   }
 
@@ -450,57 +468,58 @@
         return renderSubsection(c, sections, 1);
       }).join('');
       bodyInner = own + kids;
-      if (!bodyInner) bodyInner = '<p class="empty-note">— ยังไม่มีข้อมูล (จะเพิ่มในภายหลัง) —</p>';
+      if (!bodyInner) bodyInner = '<p class="empty-note">' + esc(t('emptyNote')) + '</p>';
     }
 
     return '<section class="mono-section' + (node.alert ? ' section-alert' : '') + '" id="sec-' + esc(node.id) + '">' +
       '<button type="button" class="sec-head" data-toggle-section>' +
-      '<span><span class="sec-en">' + esc(node.en) + '</span> <span class="sec-th">' + esc(node.th) + '</span></span>' +
+      '<span><span class="sec-en">' + esc(secTitle(node)) + '</span> <span class="sec-th">' + esc(secSub(node)) + '</span></span>' +
       '<span class="sec-caret">▾</span></button>' +
       '<div class="sec-body">' + bodyInner + '</div></section>';
   }
 
   function viewItem(id) {
     var m = window.HERB_DB.byId[id];
-    if (!m) return viewNotFound('ไม่พบรายการ "' + esc(id) + '"');
+    if (!m) return viewNotFound();
 
     var sections = m.sections || {};
 
-    /* แบนเนอร์แจ้งเตือน (จาก m.alerts และ/หรือ boxedWarning) */
     var alertHtml = '';
     var alertItems = (m.alerts || []).slice();
     if (alertItems.length) {
-      alertHtml = '<div class="alert-banner"><p class="alert-title">⚠️ การแจ้งเตือนสำคัญ (ALERTS)</p><ul>' +
-        alertItems.map(function (a) { return '<li>' + inlineFormat(a) + '</li>'; }).join('') + '</ul></div>';
+      alertHtml = '<div class="alert-banner"><p class="alert-title">' + esc(t('alertBanner')) + '</p><ul>' +
+        alertItems.map(function (a) { return '<li>' + inlineFormat(window.pickLang(a)) + '</li>'; }).join('') + '</ul></div>';
     }
 
-    var toc = '<nav class="mono-toc" aria-label="สารบัญหัวข้อ"><div class="toc-title">Outline · สารบัญ</div><ul>' +
+    var toc = '<nav class="mono-toc" aria-label="' + esc(t('outlineTitle')) + '"><div class="toc-title">' + esc(t('outlineTitle')) + '</div><ul>' +
       SCHEMA.map(function (n) { return tocEntry(n, sections); }).join('') + '</ul></nav>';
 
     var body = SCHEMA.map(function (n) { return renderTopSection(n, m); }).join('');
 
     var meta = [];
-    if (m.scientificName) meta.push('<span class="meta-item"><b>ชื่อวิทยาศาสตร์:</b> <i>' + esc(m.scientificName) + '</i></span>');
-    if (m.family) meta.push('<span class="meta-item"><b>วงศ์:</b> ' + esc(m.family) + '</span>');
-    if (m.partUsed) meta.push('<span class="meta-item"><b>ส่วนที่ใช้:</b> ' + esc(m.partUsed) + '</span>');
-    if (m.synonyms && m.synonyms.length) meta.push('<span class="meta-item"><b>ชื่ออื่น:</b> ' + esc(m.synonyms.join(', ')) + '</span>');
-    if (m.updated) meta.push('<span class="meta-item"><b>อัปเดต:</b> ' + esc(m.updated) + '</span>');
+    if (m.scientificName) meta.push('<span class="meta-item"><b>' + esc(t('metaSci')) + '</b> <i>' + esc(m.scientificName) + '</i></span>');
+    if (m.family) meta.push('<span class="meta-item"><b>' + esc(t('metaFamily')) + '</b> ' + esc(window.pickLang(m.family)) + '</span>');
+    if (m.partUsed) meta.push('<span class="meta-item"><b>' + esc(t('metaPart')) + '</b> ' + esc(window.pickLang(m.partUsed)) + '</span>');
+    if (m.synonyms && m.synonyms.length) meta.push('<span class="meta-item"><b>' + esc(t('metaSyn')) + '</b> ' + esc(m.synonyms.join(', ')) + '</span>');
+    if (m.updated) meta.push('<span class="meta-item"><b>' + esc(t('metaUpdated')) + '</b> ' + esc(m.updated) + '</span>');
+
+    var sec = secondaryName(m);
 
     app.innerHTML =
-      '<div class="back-row"><a href="#/list">← กลับไปหน้ารายการ</a></div>' +
+      '<div class="back-row"><a href="#/list">' + esc(t('backToList')) + '</a></div>' +
       '<div class="mono-layout">' + toc +
       '<div class="mono-main">' +
       '  <header class="mono-header">' +
-      '    <h1>' + esc(m.nameTh || m.nameEn) + '</h1>' +
-      (m.nameEn ? '<p class="mono-en">' + esc(m.nameEn) + '</p>' : '') +
+      '    <h1>' + esc(primaryName(m)) + '</h1>' +
+      (sec ? '<p class="mono-en">' + esc(sec) + '</p>' : '') +
       '    <div class="badge-row"><span class="badge badge-cat">' + esc(catLabel(m.category)) + '</span>' + statusBadge(m.status) + '</div>' +
       '    <div class="mono-meta">' + meta.join('') + '</div>' +
       '  </header>' +
       '  <div class="mono-toolbar">' +
-      '    <button type="button" class="btn" id="btn-expand">ขยายทุกหัวข้อ</button>' +
-      '    <button type="button" class="btn" id="btn-collapse">ย่อทุกหัวข้อ</button>' +
-      '    <button type="button" class="btn" id="btn-empty">' + (showEmpty ? 'ซ่อน' : 'แสดง') + 'หัวข้อที่ยังไม่มีข้อมูล</button>' +
-      '    <button type="button" class="btn btn-primary" id="btn-print">🖨 พิมพ์</button>' +
+      '    <button type="button" class="btn" id="btn-expand">' + esc(t('expandAll')) + '</button>' +
+      '    <button type="button" class="btn" id="btn-collapse">' + esc(t('collapseAll')) + '</button>' +
+      '    <button type="button" class="btn" id="btn-empty">' + esc(showEmpty ? t('hideEmpty') : t('showEmpty')) + '</button>' +
+      '    <button type="button" class="btn btn-primary" id="btn-print">' + esc(t('print')) + '</button>' +
       '  </div>' +
       alertHtml + body +
       '</div></div>';
@@ -542,32 +561,32 @@
     document.querySelectorAll('.mono-section[id]').forEach(function (el) { observer.observe(el); });
   }
 
-  function viewNotFound(msg) {
-    app.innerHTML = '<div class="empty-state"><h2>ไม่พบหน้าที่ต้องการ</h2><p>' + (msg || '') + '</p>' +
-      '<p><a href="#/">กลับหน้าแรก</a></p></div>';
+  function viewNotFound() {
+    app.innerHTML = '<div class="empty-state"><h2>' + esc(t('notFoundTitle')) + '</h2>' +
+      '<p><a href="#/">' + esc(t('backHome')) + '</a></p></div>';
   }
 
   /* ============================================================
      เหตุการณ์ที่ใช้ event delegation (TOC, ลิงก์อ้างอิง, ย่อ/ขยายหัวข้อ)
      ============================================================ */
   document.addEventListener('click', function (e) {
-    var t = e.target.closest ? e.target.closest('[data-anchor], [data-ref], [data-toggle-section]') : null;
-    if (!t) return;
+    var tEl = e.target.closest ? e.target.closest('[data-anchor], [data-ref], [data-toggle-section]') : null;
+    if (!tEl) return;
 
-    if (t.hasAttribute('data-anchor')) {
+    if (tEl.hasAttribute('data-anchor')) {
       e.preventDefault();
-      var el = document.getElementById(t.getAttribute('data-anchor'));
+      var el = document.getElementById(tEl.getAttribute('data-anchor'));
       if (el) {
-        var sec = el.classList.contains('mono-section') ? el : el.closest('.mono-section');
-        if (sec) sec.classList.remove('collapsed');
+        var s = el.classList.contains('mono-section') ? el : el.closest('.mono-section');
+        if (s) s.classList.remove('collapsed');
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       return;
     }
 
-    if (t.hasAttribute('data-ref')) {
+    if (tEl.hasAttribute('data-ref')) {
       e.preventDefault();
-      var ref = document.getElementById('ref-' + t.getAttribute('data-ref'));
+      var ref = document.getElementById('ref-' + tEl.getAttribute('data-ref'));
       if (ref) {
         var refSec = ref.closest('.mono-section');
         if (refSec) refSec.classList.remove('collapsed');
@@ -578,8 +597,8 @@
       return;
     }
 
-    if (t.hasAttribute('data-toggle-section')) {
-      var section = t.closest('.mono-section');
+    if (tEl.hasAttribute('data-toggle-section')) {
+      var section = tEl.closest('.mono-section');
       if (section) section.classList.toggle('collapsed');
     }
   });
@@ -591,7 +610,6 @@
     var r = parseRoute();
     var page = r.path[0] || '';
 
-    /* อัปเดตสถานะ active ของเมนูบน */
     document.querySelectorAll('.topbar nav a[data-nav]').forEach(function (a) {
       var nav = a.getAttribute('data-nav');
       var active = (nav === 'home' && !page) || (nav === 'list' && page === 'list');
@@ -610,8 +628,23 @@
   });
 
   /* ============================================================
+     ปุ่มสลับภาษา
+     ============================================================ */
+  function setupLangToggle() {
+    var toggle = document.getElementById('lang-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', function () {
+      LANG.set(LANG.other());
+      window.applyStaticI18n();
+      render();
+    });
+  }
+
+  /* ============================================================
      เริ่มต้น
      ============================================================ */
-  app.innerHTML = '<div class="empty-state">กำลังโหลดข้อมูล…</div>';
+  window.applyStaticI18n();
+  setupLangToggle();
+  app.innerHTML = '<div class="empty-state">' + esc(t('loading')) + '</div>';
   loadData().then(render);
 })();
