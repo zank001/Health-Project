@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>เพิ่มข้อมูล — คลังข้อมูลอาหารเสริมและสมุนไพร</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .builder-form { max-width: 900px; margin: 0 auto; }
+    .form-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 14px; }
+    .form-group h2 { font-size: 1.05rem; margin: 0 0 12px; color: var(--brand-strong); }
+    .field { margin-bottom: 12px; }
+    .field label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+    .field .en-lbl { color: var(--text-muted); font-weight: 400; font-size: 0.82rem; }
+    .field .hint { color: var(--text-muted); font-size: 0.8rem; margin-top: 2px; }
+    .field input, .field select, .field textarea {
+      width: 100%; font-family: inherit; font-size: 0.95rem;
+      padding: 8px 11px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--bg); color: var(--text);
+    }
+    .field textarea { min-height: 70px; resize: vertical; line-height: 1.55; }
+    .field.indent { border-left: 3px solid var(--brand-soft); padding-left: 12px; margin-left: 4px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 640px){ .row2 { grid-template-columns: 1fr; } }
+    .sticky-actions {
+      position: sticky; bottom: 0; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px; margin-top: 16px;
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center; box-shadow: var(--shadow);
+    }
+    .output-wrap { margin-top: 16px; }
+    .output-wrap textarea {
+      width: 100%; min-height: 260px; font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+      font-size: 0.82rem; padding: 12px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--surface-2); color: var(--text);
+    }
+    .toast { color: var(--brand-strong); font-weight: 600; font-size: 0.9rem; }
+    details.help { background: var(--surface-2); border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.9rem; }
+    details.help summary { cursor: pointer; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand-title" href="index.html#/">🌿 HerbBase</a>
+      <nav>
+        <a href="index.html#/" data-nav="home">หน้าแรก</a>
+        <a href="index.html#/list" data-nav="list">รายการทั้งหมด</a>
+        <a href="builder.html" class="active" data-nav="builder">＋ เพิ่มข้อมูล</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app">
+    <div class="builder-form">
+      <div class="page-head">
+        <h1>เพิ่มข้อมูลผลิตภัณฑ์ใหม่</h1>
+        <p>กรอกข้อมูลตามหัวข้อ (outline แบบ UpToDate) — หัวข้อไหนยังไม่มีข้อมูลเว้นว่างไว้ได้ แล้วค่อยเติมทีหลัง</p>
+      </div>
+
+      <details class="help">
+        <summary>วิธีนำไฟล์ที่สร้างไปใช้งาน</summary>
+        <ol>
+          <li>กรอกข้อมูลด้านล่าง (อย่างน้อยควรมี <b>รหัส (id)</b> และ <b>ชื่อไทย</b>)</li>
+          <li>กด <b>“สร้างไฟล์ข้อมูล”</b> แล้วกด <b>“ดาวน์โหลด .js”</b></li>
+          <li>นำไฟล์ไปวางในโฟลเดอร์ <code>data/monographs/</code></li>
+          <li>เพิ่มพาธไฟล์ลงใน <code>data/manifest.js</code> เช่น <code>'data/monographs/ginger.js'</code></li>
+          <li>รีเฟรชหน้าเว็บ — รายการใหม่จะปรากฏในระบบ</li>
+        </ol>
+        <p class="muted">รูปแบบข้อความในช่องเนื้อหา: บรรทัดว่าง = ย่อหน้าใหม่ · ขึ้นต้น <code>- </code> = รายการจุด · <code>## </code> = หัวข้อย่อย · <code>**หนา**</code> · อ้างอิง <code>[1]</code></p>
+      </details>
+
+      <form id="mono-form"></form>
+
+      <div class="sticky-actions">
+        <button type="button" class="btn btn-primary" id="btn-generate">สร้างไฟล์ข้อมูล</button>
+        <button type="button" class="btn" id="btn-download">⬇ ดาวน์โหลด .js</button>
+        <button type="button" class="btn" id="btn-copy">📋 คัดลอกโค้ด</button>
+        <button type="button" class="btn" id="btn-reset">ล้างฟอร์ม</button>
+        <span class="toast" id="toast"></span>
+      </div>
+
+      <div class="output-wrap">
+        <textarea id="output" readonly placeholder="โค้ดไฟล์ข้อมูลจะแสดงที่นี่หลังกด “สร้างไฟล์ข้อมูล”…"></textarea>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>HerbBase — เครื่องมือสร้างโมโนกราฟตามโครงหัวข้อ UpToDate</p>
+  </footer>
+
+  <script src="js/schema.js"></script>
+  <script src="js/builder.js"></script>
+</body>
+</html>

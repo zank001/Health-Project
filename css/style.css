@@ -1,0 +1,533 @@
+/* ============================================================
+   style.css — สไตล์หลักของแอปคลังข้อมูลอาหารเสริมและสมุนไพร
+   รองรับโหมดสว่าง/มืดอัตโนมัติ และการพิมพ์โมโนกราฟ
+   ============================================================ */
+
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --surface-2: #eef2f0;
+  --text: #1d2b26;
+  --text-muted: #5b6d66;
+  --border: #d9e2de;
+  --brand: #1e7a5a;
+  --brand-strong: #135c43;
+  --brand-soft: #e3f2ec;
+  --accent: #b8860b;
+  --danger: #b3261e;
+  --danger-soft: #fdecea;
+  --warn-soft: #fff6e0;
+  --link: #14614a;
+  --shadow: 0 1px 3px rgba(16, 40, 32, 0.08), 0 4px 14px rgba(16, 40, 32, 0.05);
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121a17;
+    --surface: #1a2420;
+    --surface-2: #22302a;
+    --text: #e4ece8;
+    --text-muted: #9db3aa;
+    --border: #31423b;
+    --brand: #4cc39a;
+    --brand-strong: #6fd9b4;
+    --brand-soft: #1d3a2f;
+    --accent: #d9a827;
+    --danger: #ff8a80;
+    --danger-soft: #3a221f;
+    --warn-soft: #3a3220;
+    --link: #6fd9b4;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans Thai', 'Sarabun', 'Leelawadee UI', 'Segoe UI', Tahoma, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+a { color: var(--link); }
+
+/* ---------- แถบด้านบน ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--brand);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.topbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.brand-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.topbar nav {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.topbar nav a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.topbar nav a:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+.topbar nav a.active { background: rgba(255, 255, 255, 0.22); color: #fff; font-weight: 600; }
+
+/* ---------- โครงหน้า ---------- */
+main#app {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+  min-height: 60vh;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 18px 20px 26px;
+}
+.site-footer .disclaimer {
+  max-width: 860px;
+  margin: 0 auto 6px;
+}
+
+/* ---------- หน้าแรก ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-strong) 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 44px 28px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.hero h1 { margin: 0 0 6px; font-size: 1.7rem; }
+.hero p.subtitle { margin: 0 0 22px; opacity: 0.9; }
+
+.search-wrap {
+  position: relative;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.search-input {
+  width: 100%;
+  padding: 13px 18px;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 12px;
+  outline: 3px solid transparent;
+  font-family: inherit;
+  color: #1d2b26;
+  background: #fff;
+}
+.search-input:focus { outline-color: rgba(255, 255, 255, 0.55); }
+
+.search-suggest {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  text-align: left;
+  z-index: 40;
+}
+.search-suggest a {
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+.search-suggest a:last-child { border-bottom: none; }
+.search-suggest a:hover, .search-suggest a.kbd-active { background: var(--brand-soft); }
+.search-suggest .s-name { font-weight: 600; }
+.search-suggest .s-sub { font-size: 0.85rem; color: var(--text-muted); }
+
+.stat-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.stat-chip {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 8px 18px;
+  font-size: 0.92rem;
+}
+.stat-chip b { font-size: 1.15rem; margin-right: 4px; }
+
+.home-section { margin-top: 34px; }
+.home-section h2 {
+  font-size: 1.15rem;
+  margin: 0 0 14px;
+  color: var(--text);
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.cat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.cat-card:hover { border-color: var(--brand); transform: translateY(-2px); }
+.cat-card .cat-name { font-weight: 600; }
+.cat-card .cat-sub { font-size: 0.82rem; color: var(--text-muted); }
+.cat-card .cat-count {
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+  border-radius: 20px;
+  padding: 2px 12px;
+  font-weight: 700;
+}
+
+/* ---------- หน้ารายการ ---------- */
+.page-head { margin: 6px 0 18px; }
+.page-head h1 { font-size: 1.45rem; margin: 0 0 4px; }
+.page-head p { margin: 0; color: var(--text-muted); }
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+.filter-bar input[type="search"],
+.filter-bar select {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+}
+.filter-bar input[type="search"] { flex: 1 1 240px; min-width: 200px; }
+.filter-bar .result-count { color: var(--text-muted); font-size: 0.9rem; margin-left: auto; }
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 14px;
+}
+.item-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  transition: border-color 0.15s, transform 0.15s;
+  box-shadow: var(--shadow);
+}
+.item-card:hover { border-color: var(--brand); transform: translateY(-2px); }
+.item-card h3 { margin: 0 0 2px; font-size: 1.08rem; color: var(--brand-strong); }
+.item-card .en-name { color: var(--text-muted); font-size: 0.92rem; margin: 0 0 8px; }
+.item-card .sci-name { font-style: italic; font-size: 0.85rem; color: var(--text-muted); }
+.badge-row { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.badge-cat { background: var(--brand-soft); color: var(--brand-strong); }
+.status-draft { background: var(--warn-soft); color: #8a6d00; }
+.status-review { background: #e8f0fe; color: #1a56b0; }
+.status-complete { background: var(--brand-soft); color: var(--brand-strong); }
+@media (prefers-color-scheme: dark) {
+  .status-draft { background: #3a3220; color: #e8c96a; }
+  .status-review { background: #1e2c44; color: #8ab4f8; }
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 50px 20px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+/* ---------- หน้าโมโนกราฟ ---------- */
+.mono-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .mono-layout { grid-template-columns: 1fr; }
+}
+
+.mono-toc {
+  position: sticky;
+  top: 70px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 6px 14px 14px;
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
+  font-size: 0.88rem;
+}
+@media (max-width: 900px) {
+  .mono-toc { position: static; max-height: 300px; }
+}
+.mono-toc .toc-title {
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.mono-toc ul { list-style: none; margin: 0; padding: 0; }
+.mono-toc ul ul { padding-left: 14px; }
+.mono-toc li { margin: 1px 0; }
+.mono-toc a {
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text);
+  cursor: pointer;
+}
+.mono-toc a:hover { background: var(--surface-2); }
+.mono-toc a.active { background: var(--brand-soft); color: var(--brand-strong); font-weight: 600; }
+.mono-toc a.toc-empty { color: var(--text-muted); opacity: 0.62; }
+.mono-toc a .toc-en { display: block; }
+.mono-toc a .toc-th { display: block; font-size: 0.78rem; color: var(--text-muted); }
+
+/* หัวเรื่องโมโนกราฟ */
+.mono-header {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.mono-header h1 { margin: 0; font-size: 1.55rem; color: var(--brand-strong); }
+.mono-header .mono-en { font-size: 1.05rem; color: var(--text-muted); margin: 2px 0 0; }
+.mono-header .mono-sci { font-style: italic; color: var(--text-muted); margin: 6px 0 0; font-size: 0.95rem; }
+.mono-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+.mono-meta .meta-item b { color: var(--text); font-weight: 600; }
+
+.mono-toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 16px;
+}
+.btn {
+  font-family: inherit;
+  font-size: 0.88rem;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--brand); color: var(--brand-strong); }
+.btn.btn-primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn.btn-primary:hover { background: var(--brand-strong); }
+
+/* แบนเนอร์แจ้งเตือน */
+.alert-banner {
+  background: var(--danger-soft);
+  border: 1px solid var(--danger);
+  border-left-width: 6px;
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+.alert-banner .alert-title {
+  color: var(--danger);
+  font-weight: 700;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.alert-banner ul { margin: 0; padding-left: 22px; }
+
+/* Section ของโมโนกราฟ */
+.mono-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  overflow: hidden;
+  scroll-margin-top: 76px;
+}
+.mono-section.section-alert { border-left: 5px solid var(--danger); }
+
+.sec-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text);
+}
+.sec-head:hover { background: var(--surface-2); }
+.sec-head .sec-en { font-size: 1.05rem; font-weight: 700; color: var(--brand-strong); }
+.section-alert .sec-head .sec-en { color: var(--danger); }
+.sec-head .sec-th { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; }
+.sec-head .sec-caret {
+  margin-left: auto;
+  transition: transform 0.18s;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.mono-section.collapsed .sec-caret { transform: rotate(-90deg); }
+.sec-body { padding: 2px 20px 16px; border-top: 1px solid var(--border); }
+.mono-section.collapsed .sec-body { display: none; }
+
+.subsection { margin-top: 14px; scroll-margin-top: 76px; }
+.subsection > h3, .subsection > h4 {
+  margin: 0 0 6px;
+  color: var(--text);
+}
+.subsection > h3 { font-size: 1rem; }
+.subsection > h4 { font-size: 0.94rem; }
+.subsection .sub-th { font-weight: 400; color: var(--text-muted); font-size: 0.85rem; margin-left: 6px; }
+
+.content-subhead {
+  margin: 14px 0 4px;
+  font-size: 0.94rem;
+  color: var(--brand-strong);
+}
+.sec-body p { margin: 8px 0; }
+.sec-body ul, .sec-body ol { margin: 8px 0; padding-left: 26px; }
+.sec-body li { margin: 3px 0; }
+
+.content-note {
+  background: var(--warn-soft);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: 0.92rem;
+}
+@media (prefers-color-scheme: dark) {
+  .content-note { background: #3a3220; }
+}
+
+.content-table-wrap { overflow-x: auto; margin: 10px 0; }
+.content-table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+.content-table th, .content-table td {
+  border: 1px solid var(--border);
+  padding: 7px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.content-table th { background: var(--surface-2); }
+
+.empty-note {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: 8px 0;
+  opacity: 0.75;
+}
+
+.ref-link {
+  color: var(--link);
+  text-decoration: none;
+  font-size: 0.8em;
+  vertical-align: super;
+  cursor: pointer;
+  font-weight: 600;
+}
+.ref-link:hover { text-decoration: underline; }
+
+ol.refs { padding-left: 26px; font-size: 0.92rem; }
+ol.refs li { margin: 6px 0; scroll-margin-top: 90px; }
+ol.refs li:target { background: var(--brand-soft); border-radius: 6px; }
+
+.back-row { margin-bottom: 12px; }
+.back-row a { text-decoration: none; font-size: 0.92rem; }
+
+/* ---------- ตัวช่วยทั่วไป ---------- */
+.muted { color: var(--text-muted); }
+.nowrap { white-space: nowrap; }
+
+/* ---------- โหมดพิมพ์ ---------- */
+@media print {
+  .topbar, .mono-toc, .mono-toolbar, .site-footer, .back-row, .search-wrap { display: none !important; }
+  body { background: #fff; color: #000; font-size: 12px; }
+  main#app { max-width: none; padding: 0; }
+  .mono-layout { display: block; }
+  .mono-section, .mono-header { box-shadow: none; border-color: #bbb; break-inside: avoid-page; }
+  .mono-section.collapsed .sec-body { display: block; }
+  .sec-head { cursor: default; }
+  .sec-caret { display: none; }
+}

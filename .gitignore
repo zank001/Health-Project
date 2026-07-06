@@ -1,0 +1,11 @@
+# dependencies (ใช้เฉพาะตอนทดสอบ)
+node_modules/
+package.json
+package-lock.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
