@@ -149,9 +149,6 @@
 
     var sections = {};
     SCHEMA.forEach(function (n) { if (n.id !== 'alerts') collectSections(n, sections); });
-    // เนื้อหาใน boxedWarning (ลูกของ alerts) ก็เก็บด้วย
-    var bw = val('sec-boxedWarning');
-    if (bw) sections.boxedWarning = bw;
 
     return {
       id: id,
