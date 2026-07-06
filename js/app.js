@@ -166,7 +166,12 @@
     return Promise.all(files.map(function (src) {
       return new Promise(function (resolve) {
         var s = document.createElement('script');
-        s.src = src;
+        // เพิ่มพารามิเตอร์กันแคช (cache-busting) ให้ไฟล์ข้อมูล เพื่อให้ได้เนื้อหาล่าสุดเสมอหลัง deploy
+        // โดยไม่ต้อง hard refresh — ข้ามเมื่อเปิดแบบ file:// เพราะ query string ทำให้หาไฟล์ไม่เจอ
+        var bust = (location.protocol === 'http:' || location.protocol === 'https:')
+          ? (src.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now()
+          : '';
+        s.src = src + bust;
         s.onload = resolve;
         s.onerror = function () {
           console.warn('โหลดไฟล์ข้อมูลไม่สำเร็จ: ' + src);
