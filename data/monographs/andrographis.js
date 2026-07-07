@@ -332,10 +332,77 @@ HERB_DB.register({
       en: 'No primary research has examined excretion of andrographolide or other active constituents into human milk, or the safety of infants breastfed by mothers taking andrographis — a clear **research gap**. Advice to interrupt breastfeeding for 48 hours or 2–3 days (seen in media and Ministry of Public Health notices) is therefore **precautionary** rather than based on human-milk pharmacokinetic data. Overall, use during breastfeeding is not recommended.',
     },
 
-    mechanismOfAction: {
-      th: 'สารสำคัญคือ andrographolide (กลุ่ม diterpenoid lactone) มีฤทธิ์ต้านการอักเสบ กระตุ้นภูมิคุ้มกัน และต้านไวรัสในหลอดทดลอง [1]',
-      en: 'The key constituent is andrographolide (a diterpenoid lactone), which has anti-inflammatory, immunostimulant, and antiviral activity in vitro [1]',
-    },
+    mechanismOfAction: [
+      { th: '## สารออกฤทธิ์หลัก (Active constituents)', en: '## Active constituents' },
+      {
+        th: 'สารออกฤทธิ์สำคัญคือกลุ่ม **diterpenoid lactones** โดย **andrographolide (AND)** เป็นสารหลักที่พบมากที่สุดในใบและลำต้น (สูตรเคมี C20H30O5, น้ำหนักโมเลกุล 350.4; ชื่อทางเคมี 3α,14,15,18-tetrahydroxy-5βH,9βH,10α-labda-8,12-dien-16-oic acid γ-lactone) ร่วมกับ 14-deoxy-11,12-didehydroandrographolide, neoandrographolide และ 14-deoxyandrographolide [35]',
+        en: 'The key active constituents are **diterpenoid lactones**, with **andrographolide (AND)** the most abundant in leaves and stems (C20H30O5, MW 350.4; chemically 3α,14,15,18-tetrahydroxy-5βH,9βH,10α-labda-8,12-dien-16-oic acid γ-lactone), together with 14-deoxy-11,12-didehydroandrographolide, neoandrographolide, and 14-deoxyandrographolide [35]',
+      },
+      { th: '## ต้านการอักเสบ (ผ่าน NF-κB)', en: '## Anti-inflammatory (via NF-κB)' },
+      {
+        th: 'andrographolide ยับยั้ง **NF-κB** โดยจับกับ Cys62 ของ p50 subunit แบบ covalent ทำให้ NF-κB จับกับ DNA ไม่ได้ ส่งผลลดการแสดงออกของ E-selectin, COX-2 และ iNOS — เป็นกลไกหลักของฤทธิ์ต้านการอักเสบ [35]',
+        en: 'Andrographolide inhibits **NF-κB** by covalently binding Cys62 of the p50 subunit, preventing NF-κB from binding DNA and reducing expression of E-selectin, COX-2, and iNOS — the main anti-inflammatory mechanism [35]',
+      },
+      { th: '## ต้านการเกาะกลุ่มของเกล็ดเลือด', en: '## Antiplatelet aggregation' },
+      {
+        th: 'ออกฤทธิ์ผ่านการกระตุ้น eNOS-NO/cyclic GMP และยับยั้ง PLCγ2-PKC และ PI3K/Akt-MAPK (p38) ใน washed human platelets [35]',
+        en: 'Acts by activating the eNOS-NO/cyclic GMP pathway and inhibiting PLCγ2-PKC and PI3K/Akt-MAPK (p38) cascades in washed human platelets [35]',
+      },
+      { th: '## ปรับภูมิคุ้มกัน (สองทิศทาง)', en: '## Immunomodulation (dual-direction)' },
+      {
+        th: 'ในขนาดต่ำกระตุ้นการสร้างแอนติบอดีและ delayed-type hypersensitivity (เพิ่ม macrophage migration, phagocytosis, splenic lymphocyte) แต่ในบางบริบทยับยั้ง NF-κB ใน dendritic cells ทำให้เป็น tolerogenic มากขึ้น จึงมีฤทธิ์ทั้งกระตุ้นและกดภูมิคุ้มกันขึ้นกับบริบทและขนาด [35]',
+        en: 'At low doses it stimulates antibody production and delayed-type hypersensitivity (enhancing macrophage migration, phagocytosis, and splenic lymphocytes), but in some settings it inhibits NF-κB in dendritic cells, making them more tolerogenic — hence both stimulatory and suppressive effects depending on context and dose [35]',
+      },
+      { th: '## ต้านมะเร็ง', en: '## Anticancer' },
+      {
+        th: 'ยับยั้ง JAK-STAT, PI3K และ NF-κB signaling, กด HSP90, cyclins/CDKs และ metalloproteinases และกระตุ้น tumor suppressor p53 และ p21 นำไปสู่การยับยั้งการแบ่งตัว การรอดชีวิต การแพร่กระจาย และการสร้างหลอดเลือดใหม่ของเซลล์มะเร็ง [35]',
+        en: 'Inhibits JAK-STAT, PI3K, and NF-κB signaling; suppresses HSP90, cyclins/CDKs, and metalloproteinases; and activates the tumor suppressors p53 and p21, leading to inhibition of cancer-cell proliferation, survival, metastasis, and angiogenesis [35]',
+      },
+      { th: '## ลดน้ำตาลในเลือด', en: '## Antihyperglycemic' },
+      {
+        th: 'กระตุ้นการหลั่งอินซูลินผ่าน ATP-sensitive potassium channels, ยับยั้ง alpha-glucosidase และ alpha-amylase และเพิ่ม mRNA/โปรตีนของ glucose transporter ในกล้ามเนื้อ soleus ของหนูเบาหวาน ทำให้เพิ่มการนำกลูโคสเข้าเซลล์ [35]',
+        en: 'Stimulates insulin secretion via ATP-sensitive potassium channels, inhibits alpha-glucosidase and alpha-amylase, and increases glucose-transporter mRNA/protein in the soleus muscle of diabetic rats, enhancing cellular glucose uptake [35]',
+      },
+    ],
+    pharmacokinetics: [
+      {
+        th: 'การศึกษา phase I PK (แบบครั้งเดียวและหลายครั้ง) ในอาสาสมัครไทยสุขภาพดี 24 ราย ที่ได้รับสารสกัดน้ำของฟ้าทะลายโจร เทียบเท่า andrographolide 60 หรือ 120 มก. (ครั้งเดียว) และ 180 หรือ 360 มก./วัน (หลายครั้ง) [36]',
+        en: 'A phase I PK study (single- and multiple-dose) in 24 healthy Thai participants given an aqueous andrographis extract equivalent to andrographolide 60 or 120 mg (single dose) and 180 or 360 mg/day (multiple dose) [36]',
+      },
+      {
+        table: {
+          headers: [
+            { th: 'พารามิเตอร์ (andrographolide, ครั้งเดียว)', en: 'Parameter (andrographolide, single dose)' },
+            { th: '60 มก.', en: '60 mg' },
+            { th: '120 มก.', en: '120 mg' },
+          ],
+          rows: [
+            [{ th: 'Cmax (ng/mL)', en: 'Cmax (ng/mL)' }, { th: '72.1 ± 28.7', en: '72.1 ± 28.7' }, { th: '112 ± 33.4', en: '112 ± 33.4' }],
+            [{ th: 'Tmax (ชม.)', en: 'Tmax (h)' }, { th: '0.80', en: '0.80' }, { th: '0.80', en: '0.80' }],
+            [{ th: 'AUC(0–24) (ng·h/mL)', en: 'AUC(0–24) (ng·h/mL)' }, { th: '210 ± 25.4', en: '210 ± 25.4' }, { th: '345 ± 63.5', en: '345 ± 63.5' }],
+            [{ th: 'ครึ่งชีวิต (ชม.)', en: 'Half-life (h)' }, { th: '1.3', en: '1.3' }, { th: '1.2', en: '1.2' }],
+            [{ th: 'Vd/F (L/kg)', en: 'Vd/F (L/kg)' }, { th: '9.0 ± 1.66', en: '9.0 ± 1.66' }, { th: '10.8 ± 1.6', en: '10.8 ± 1.6' }],
+            [{ th: 'Cl/F (L/h/kg)', en: 'Cl/F (L/h/kg)' }, { th: '4.9 ± 0.84', en: '4.9 ± 0.84' }, { th: '6.0 ± 0.91', en: '6.0 ± 0.91' }],
+          ],
+        },
+      },
+      {
+        th: '- **การดูดซึม:** เร็ว (Tmax ~0.8 ชม.)\n- **ครึ่งชีวิต:** สั้น (~1.2–2.3 ชม. สำหรับ andrographolide) จึงต้องให้หลายครั้งต่อวันเพื่อคงระดับยา\n- **เมแทบอลิซึม:** ผ่าน phase II conjugation เป็น glucuronide และ sulfate เป็นหลัก (เปลี่ยนรูปที่ตับอย่างรวดเร็ว)\n- **การขับออก:** ทาง hepatobiliary และปัสสาวะเป็นหลัก [36]',
+        en: '- **Absorption:** rapid (Tmax ~0.8 h)\n- **Half-life:** short (~1.2–2.3 h for andrographolide), requiring multiple daily doses to maintain levels\n- **Metabolism:** mainly phase II conjugation to glucuronide and sulfate (rapid hepatic transformation)\n- **Excretion:** primarily hepatobiliary and urinary [36]',
+      },
+    ],
+    pkAdditional: [
+      {
+        th: '- **Dose proportionality:** ระดับยาในเลือดเพิ่มแบบขึ้นกับขนาด — เมื่อเพิ่มขนาด 2 เท่า Cmax และ AUC ของสาร parent ทั้ง 4 ชนิดเพิ่มขึ้น ~2 เท่า (dose-proportional ในช่วงที่ศึกษา) [36]\n- **สาร conjugated เด่นกว่า parent มาก:** เช่น AUC ของ glucuronide conjugate สูงกว่า parent ~40–50 เท่า สะท้อนการเมแทบอไลซ์อย่างรวดเร็ว [36]',
+        en: '- **Dose proportionality:** blood levels rose dose-dependently — doubling the dose roughly doubled Cmax and AUC of all four parent compounds (dose-proportional over the studied range) [36]\n- **Conjugated metabolites dominate over parent:** e.g. glucuronide-conjugate AUC ~40–50× that of the parent, reflecting rapid metabolism [36]',
+      },
+      {
+        note: {
+          th: 'ความปลอดภัยในการศึกษา PK: อาการไม่พึงประสงค์ส่วนใหญ่ระดับเล็กน้อย พบไม่บ่อย และกลับสู่ปกติได้ แต่ผู้วิจัยแนะนำให้ระวังเป็นพิเศษในผู้ที่มีความผิดปกติของตับหรือไต [36]',
+          en: 'Safety in the PK study: adverse events were mostly mild, infrequent, and reversible, but the authors advised particular caution in people with hepatic or renal impairment [36]',
+        },
+      },
+    ],
 
     counselingPoints: {
       th: '- ใช้เพื่อบรรเทาอาการหวัดระยะสั้นเท่านั้น หากอาการไม่ดีขึ้นใน 3 วันหรือแย่ลง ควรพบแพทย์\n- หยุดใช้ทันทีและพบแพทย์หากมีผื่น บวม หรือหายใจลำบาก\n- ห้ามใช้หากตั้งครรภ์',
@@ -383,6 +450,8 @@ HERB_DB.register({
       'Reversible spermatoxic effect of Andrographis paniculata methanol extract in Sprague-Dawley rats. 2016.',
       'Allan JJ, et al. Reproductive and Fertility Effects of an Extract of Andrographis paniculata in Male Wistar Rats. Int J Toxicol. 2009;28(4):308-317. doi:10.1177/1091581809339631',
       'Panossian A, et al. Effect of Andrographis paniculata extract on progesterone in blood plasma of pregnant rats. Phytomedicine. 1999;6(3):157-161. doi:10.1016/S0944-7113(99)80003-8',
+      'Jayakumar T, et al. Experimental and Clinical Pharmacology of Andrographis paniculata and Its Major Bioactive Phytoconstituent Andrographolide. Evid Based Complement Alternat Med. 2013;2013:846740. doi:10.1155/2013/846740',
+      'Songvut P, et al. Comparative pharmacokinetics and safety evaluation of high dosage regimens of Andrographis paniculata aqueous extract after single and multiple oral administration in healthy participants. Front Pharmacol. 2023;14:1230401. doi:10.3389/fphar.2023.1230401',
     ],
   },
 });
