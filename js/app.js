@@ -172,25 +172,30 @@
   /* ============================================================
      โหลดไฟล์ข้อมูลตาม manifest (ใช้ <script> จึงทำงานกับ file:// ได้)
      ============================================================ */
+  function loadScript(src) {
+    return new Promise(function (resolve) {
+      var s = document.createElement('script');
+      // เพิ่มพารามิเตอร์กันแคช (cache-busting) เมื่อเปิดผ่าน http(s) เพื่อให้ได้ไฟล์ล่าสุดเสมอ
+      // ข้ามเมื่อเปิดแบบ file:// เพราะ query string ทำให้หาไฟล์ไม่เจอ
+      var bust = (location.protocol === 'http:' || location.protocol === 'https:')
+        ? (src.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now()
+        : '';
+      s.src = src + bust;
+      s.onload = resolve;
+      s.onerror = function () {
+        console.warn('โหลดไฟล์ไม่สำเร็จ: ' + src);
+        resolve();
+      };
+      document.head.appendChild(s);
+    });
+  }
+
+  // โหลด manifest (กันแคช) ก่อน แล้วจึงโหลดไฟล์ข้อมูลทั้งหมด — รายการใหม่จึงปรากฏโดยไม่ต้อง hard refresh
   function loadData() {
-    var files = window.HERB_DB_MANIFEST || [];
-    return Promise.all(files.map(function (src) {
-      return new Promise(function (resolve) {
-        var s = document.createElement('script');
-        // เพิ่มพารามิเตอร์กันแคช (cache-busting) ให้ไฟล์ข้อมูล เพื่อให้ได้เนื้อหาล่าสุดเสมอหลัง deploy
-        // โดยไม่ต้อง hard refresh — ข้ามเมื่อเปิดแบบ file:// เพราะ query string ทำให้หาไฟล์ไม่เจอ
-        var bust = (location.protocol === 'http:' || location.protocol === 'https:')
-          ? (src.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now()
-          : '';
-        s.src = src + bust;
-        s.onload = resolve;
-        s.onerror = function () {
-          console.warn('โหลดไฟล์ข้อมูลไม่สำเร็จ: ' + src);
-          resolve();
-        };
-        document.head.appendChild(s);
-      });
-    }));
+    return loadScript('data/manifest.js').then(function () {
+      var files = window.HERB_DB_MANIFEST || [];
+      return Promise.all(files.map(loadScript));
+    });
   }
 
   /* ============================================================

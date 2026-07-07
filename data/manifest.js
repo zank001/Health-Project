@@ -9,4 +9,5 @@ window.HERB_DB_MANIFEST = [
   'data/monographs/turmeric.js',
   'data/monographs/fish-oil.js',
   'data/monographs/andrographis.js',
+  'data/monographs/glutathione.js',
 ];
