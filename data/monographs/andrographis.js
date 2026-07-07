@@ -45,7 +45,7 @@ HERB_DB.register({
             ],
             [
               { th: 'ผงเหง้าแห้ง (herba Andrographidis, ตาม WHO monograph)', en: 'Dried crude powder (herba Andrographidis, per WHO monograph)' },
-              { th: '2–6 กรัม/วัน (ขึ้นกับสูตรตำรับ)', en: '2–6 g/day (depending on the preparation)' },
+              { th: '2–6 กรัม/วัน (ขึ้นกับสูตรตำรับ) [8]', en: '2–6 g/day (depending on the preparation) [8]' },
             ],
             [
               { th: 'บัญชียาหลักแห่งชาติด้านสมุนไพร (หวัด/เจ็บคอ)', en: 'Thai National List of Herbal Medicinal Products (cold / sore throat)' },
@@ -72,8 +72,8 @@ HERB_DB.register({
       en: 'There are no pharmacokinetic or dose-adjustment studies in renal impairment [7]. Avoid or use with great caution in moderate-to-severe renal impairment, and monitor renal function, especially with high doses or use beyond 5–10 days [9]',
     },
     adultLiver: {
-      th: 'andrographolide ถูกเมแทบอไลต์ที่ตับ (phase I/II) และขับออกทางน้ำดีและปัสสาวะ แต่ยังไม่มีการศึกษาเภสัชจลนศาสตร์ในผู้ป่วยตับบกพร่อง [7] มีรายงานภาวะตับอักเสบ/พิษต่อตับสัมพันธ์กับการใช้ (เช่น รายงานความปลอดภัยของ TGA ออสเตรเลีย) จึงควรหลีกเลี่ยงในผู้ที่มีโรคตับระดับปานกลางถึงรุนแรง หรือใช้ภายใต้การดูแลของแพทย์พร้อมติดตามค่าการทำงานของตับ และหยุดใช้หากค่าเอนไซม์ตับสูงขึ้น [7,9]',
-      en: 'Andrographolide is hepatically metabolized (phase I/II) and excreted in bile and urine, but there are no pharmacokinetic studies in hepatic impairment [7]. Hepatitis/hepatotoxicity has been reported in association with use (e.g. the TGA Australia safety review); avoid in moderate-to-severe liver disease or use under medical supervision with liver-function monitoring, and stop if liver enzymes rise [7,9]',
+      th: 'andrographolide ถูกเมแทบอไลต์ที่ตับ (phase I/II) และขับออกทางน้ำดีและปัสสาวะ แต่ยังไม่มีการศึกษาเภสัชจลนศาสตร์ในผู้ป่วยตับบกพร่อง [7] มีรายงานภาวะตับอักเสบ/พิษต่อตับสัมพันธ์กับการใช้ (เช่น รายงานความปลอดภัยของ TGA ออสเตรเลีย) จึงควรหลีกเลี่ยงในผู้ที่มีโรคตับระดับปานกลางถึงรุนแรง หรือใช้ภายใต้การดูแลของแพทย์พร้อมติดตามค่าการทำงานของตับ และหยุดใช้หากค่าเอนไซม์ตับสูงขึ้น [7,9,13]',
+      en: 'Andrographolide is hepatically metabolized (phase I/II) and excreted in bile and urine, but there are no pharmacokinetic studies in hepatic impairment [7]. Hepatitis/hepatotoxicity has been reported in association with use (e.g. the TGA Australia safety review); avoid in moderate-to-severe liver disease or use under medical supervision with liver-function monitoring, and stop if liver enzymes rise [7,9,13]',
     },
 
     pediatricDosing: {
@@ -81,14 +81,69 @@ HERB_DB.register({
       en: 'Pediatric dosing evidence is **limited** and mostly derived from combination products. A pharmacokinetics review suggests total andrographolide about **30 mg/day** for URTI, but there is **no clear consensus** [7]. Clinical resources (e.g. MSKCC) note insufficient standardized dosing/safety data in children — **children should use it only under physician/pharmacist supervision** [9]',
     },
 
-    adrSignificant: {
-      th: 'โดยรวมฟ้าทะลายโจรมัก**ทนได้ดี** อาการไม่พึงประสงค์ส่วนใหญ่ไม่รุนแรง (ระบบทางเดินอาหาร เช่น คลื่นไส้ ท้องเสีย เบื่ออาหาร) การทบทวนอย่างเป็นระบบและ meta-analysis ด้านความปลอดภัยไม่พบสัญญาณความปลอดภัยร้ายแรงที่ชัดเจน แต่พบรายงาน**ปฏิกิริยาภูมิแพ้** (ผื่น ลมพิษ และในบางรายรุนแรงถึงขั้น anaphylaxis) จึงควรเฝ้าระวังอาการแพ้ [3,5]',
-      en: 'Andrographis is generally **well tolerated**; most adverse effects are mild (gastrointestinal, e.g. nausea, diarrhea, anorexia). Safety systematic reviews and meta-analyses found no clear serious safety signal, but **allergic reactions** (rash, urticaria, and in some cases severe anaphylaxis) have been reported — watch for allergic symptoms [3,5]',
-    },
-    adrList: {
-      th: '- ผื่นแพ้ ลมพิษ (พบบ่อยที่สุด)\n- ปฏิกิริยาภูมิแพ้รุนแรง (anaphylaxis) — พบน้อยแต่รุนแรง\n- คลื่นไส้ เบื่ออาหาร วิงเวียน',
-      en: '- Rash, urticaria (most common)\n- Severe allergic reaction (anaphylaxis) — rare but serious\n- Nausea, anorexia, dizziness',
-    },
+    adrSignificant: [
+      {
+        th: 'จาก systematic review และ meta-analysis ด้านความปลอดภัย (แบบรับประทานเดี่ยว): อาการไม่พึงประสงค์รุนแรง (SAEs) **พบได้น้อยมาก** — อุบัติการณ์รวมจาก RCT ประมาณ **0.02 ต่อ 1,000 ผู้ป่วย** (95% CI 0.0–0.5) ส่วนอาการไม่พึงประสงค์ที่ไม่รุนแรงพบได้บ่อย (~102.6 ต่อ 1,000 ใน RCT; ~34.2 ต่อ 1,000 จากการเฝ้าระวังเชิงรุก) โดยกลุ่มที่พบบ่อยที่สุดคือ**ระบบทางเดินอาหาร**และ**ผิวหนัง** [5]',
+        en: 'From safety systematic reviews and meta-analyses (oral monotherapy): serious adverse events (SAEs) are **very rare** — pooled RCT incidence about **0.02 per 1,000 patients** (95% CI 0.0–0.5). Non-serious adverse events are common (~102.6 per 1,000 in RCTs; ~34.2 per 1,000 from intensive monitoring), most often **gastrointestinal** and **skin** disorders [5]',
+      },
+      { th: '## ปฏิกิริยาภูมิแพ้และ anaphylaxis (รุนแรง — สำคัญที่สุด)', en: '## Hypersensitivity and anaphylaxis (serious — most important)' },
+      {
+        th: 'หน่วยงานกำกับ เช่น TGA (ออสเตรเลีย) และ Medsafe (นิวซีแลนด์) ออกคำเตือนว่าผลิตภัณฑ์ฟ้าทะลายโจรอาจก่อ**ปฏิกิริยาภูมิแพ้รุนแรงรวมถึง anaphylaxis** รายงานทบทวนความปลอดภัยของ TGA (2026) พบเคส anaphylaxis ที่เชื่อมโยงกับผลิตภัณฑ์ฟ้าทะลายโจรรวม **287 เคส**ในออสเตรเลีย (ถึง 31 ธ.ค. 2025) และมีผู้เสียชีวิตอย่างน้อย 1 ราย อาการมักเริ่มภายใน **5–30 นาที**หลังรับประทาน ประกอบด้วยผื่น ลมพิษ คัน แน่น/บวมคอ หายใจมีเสียงหวีด ความดันตก และหมดสติ [13,14]',
+        en: 'Regulators such as the TGA (Australia) and Medsafe (New Zealand) have warned that andrographis products can cause **severe allergic reactions including anaphylaxis**. The TGA safety review (2026) identified **287 anaphylaxis cases** linked to andrographis products in Australia (to 31 Dec 2025), with at least one death. Onset is typically within **5–30 minutes** of ingestion and may include rash, urticaria, pruritus, throat tightness/swelling, wheeze, hypotension, and loss of consciousness [13,14]',
+      },
+      {
+        th: 'ข้อมูลในไทย (ฐานข้อมูล HPVC) พบปฏิกิริยาภูมิไวเกินตั้งแต่ผื่นเล็กน้อยจนถึง anaphylactic shock และ angioedema โดยมี 13 เคสที่จัดว่าวิกฤต (anaphylactic shock 5 ราย, anaphylactic reaction 4 ราย, angioedema 4 ราย) [12]',
+        en: 'Thai data (HPVC database) documented hypersensitivity reactions from mild rash to anaphylactic shock and angioedema, including 13 critical cases (anaphylactic shock n=5, anaphylactic reaction n=4, angioedema n=4) [12]',
+      },
+      { th: '## พิษต่อตับและอวัยวะ', en: '## Hepatotoxicity and organ toxicity' },
+      {
+        th: 'การทบทวนอย่างเป็นระบบของฟ้าทะลายโจรแบบรับประทานเดี่ยว**ไม่พบอุบัติการณ์สูง**ของพิษต่อตับ แต่มี case report ของการบาดเจ็บที่ตับที่สงสัยว่าเกี่ยวข้อง ประกอบกับข้อมูลใน safety review ของ TGA จึงแนะนำให้ระวังในผู้มีโรคตับ [5,13] การศึกษาในสัตว์ (หนู) พบว่า andrographolide ขนาดสูงซ้ำ ๆ อาจก่อพิษหลายอวัยวะ (ตับ ไต) ผ่านกลไก PANoptosis [15] อย่างไรก็ตาม ในการศึกษาผู้ป่วย COVID-19 อาการน้อยที่ให้ andrographolide 90 มก./วัน นาน 5 วัน **ไม่พบการเพิ่มขึ้นของ AST/ALT อย่างมีนัยสำคัญในระยะสั้น** สนับสนุนความปลอดภัยด้านตับของการใช้ระยะสั้นในขนาดตาม RCT [10,16]',
+        en: 'Safety systematic reviews of oral AP monotherapy found **no high incidence** of hepatotoxicity, but there are case reports of suspected liver injury; together with the TGA safety review, caution is advised in people with liver disease [5,13]. Animal (mouse) studies show that repeated high-dose andrographolide can cause multi-organ toxicity (liver, kidney) via PANoptosis [15]. However, in a mild-COVID-19 study giving andrographolide 90 mg/day for 5 days, there was **no significant short-term rise in AST/ALT**, supporting the hepatic safety of short-term use at RCT-consistent doses [10,16]',
+      },
+    ],
+    adrList: [
+      {
+        th: 'อาการไม่พึงประสงค์ที่ไม่รุนแรงพบได้บ่อย ส่วนใหญ่ระดับเล็กน้อย กลุ่มที่พบบ่อยที่สุดคือระบบทางเดินอาหารและผิวหนัง [5]',
+        en: 'Non-serious adverse reactions are common and mostly mild; the most frequent involve the gastrointestinal tract and the skin [5]',
+      },
+      {
+        table: {
+          headers: [
+            { th: 'ระบบ', en: 'System' },
+            { th: 'อาการ', en: 'Reactions' },
+            { th: 'ความถี่ / ความรุนแรง', en: 'Frequency / severity' },
+          ],
+          rows: [
+            [
+              { th: 'ทางเดินอาหาร', en: 'Gastrointestinal' },
+              { th: 'คลื่นไส้, ปวด/แสบท้อง, ถ่ายเหลว/ท้องเสีย, เบื่ออาหาร', en: 'Nausea, abdominal discomfort/burning, loose stool/diarrhea, anorexia' },
+              { th: 'พบบ่อยที่สุด (~8–9% ในการศึกษา andrographolide 90 มก./วัน)', en: 'Most common (~8–9% in a 90 mg/day andrographolide study)' },
+            ],
+            [
+              { th: 'ผิวหนังและชั้นใต้ผิวหนัง', en: 'Skin and subcutaneous tissue' },
+              { th: 'ผื่น, คัน, ลมพิษ', en: 'Rash, pruritus, urticaria' },
+              { th: 'พบบ่อย', en: 'Common' },
+            ],
+            [
+              { th: 'ระบบประสาท', en: 'Nervous system' },
+              { th: 'เวียนศีรษะ, ปวดศีรษะ', en: 'Dizziness, headache' },
+              { th: 'พบน้อยกว่า มักเล็กน้อย', en: 'Less common, usually mild' },
+            ],
+            [
+              { th: 'รุนแรง (พบน้อย)', en: 'Serious (rare)' },
+              { th: 'anaphylaxis, angioedema', en: 'Anaphylaxis, angioedema' },
+              { th: 'พบน้อยมากแต่รุนแรง — หยุดใช้ทันที', en: 'Very rare but serious — stop use immediately' },
+            ],
+          ],
+        },
+      },
+      {
+        note: {
+          th: 'ข้อสังเกต: การทบทวนพบว่า **ยาฉีดอนุพันธ์ andrographolide** มีอาการไม่พึงประสงค์รุนแรงกว่า (รวม anaphylactic shock และมีผู้เสียชีวิตบางราย) ขณะที่**ตำรับสมุนไพรฟ้าทะลายโจรชนิดรับประทาน**ในขนาดตาม RCT ส่วนใหญ่มีอาการไม่รุนแรง (ทางเดินอาหาร/ภูมิไวเกิน) และถูกสรุปว่า “ปลอดภัยโดยพื้นฐาน” เมื่อใช้ในขนาดและระยะเวลาที่มีหลักฐาน [11]',
+          en: 'Note: reviews found that **andrographolide-derivative injections** have a more severe adverse-effect profile (including anaphylactic shock and some deaths), whereas **oral herbal AP preparations** at RCT-consistent doses are mostly mild (GI/hypersensitivity) and were concluded to be “essentially safe” when used at evidence-based doses and durations [11]',
+        },
+      },
+    ],
 
     contraindications: {
       th: '- แพ้ฟ้าทะลายโจรหรือพืชในวงศ์ Acanthaceae\n- หญิงตั้งครรภ์และให้นมบุตร\n- ผู้ที่มีภาวะตับหรือไตบกพร่องรุนแรง',
@@ -151,11 +206,18 @@ HERB_DB.register({
       'Poolsup N, et al. Andrographis paniculata in the symptomatic treatment of uncomplicated upper respiratory tract infection: systematic review of randomized controlled trials. J Clin Pharm Ther. 2004;29(1):37-45. doi:10.1046/j.1365-2710.2003.00534.x',
       'Coon JT, Ernst E. Andrographis paniculata in the treatment of upper respiratory tract infections: a systematic review of safety and efficacy. Planta Med. 2004;70(4):293-298. doi:10.1055/s-2004-818938',
       'Hu XY, et al. Andrographis paniculata (Chuān Xīn Lián) for symptomatic relief of acute respiratory tract infections in adults and children: a systematic review and meta-analysis. PLoS One. 2017;12(8):e0181780. doi:10.1371/journal.pone.0181780',
-      'Safety of Andrographis paniculata: a systematic review and meta-analysis. Pharmacoepidemiol Drug Saf. doi:10.1002/pds.5190',
+      'Khaing SL, et al. Safety of Andrographis paniculata: a systematic review and meta-analysis. Pharmacoepidemiol Drug Saf. 2021;30(6):727-739. doi:10.1002/pds.5190',
       'บัญชียาหลักแห่งชาติด้านสมุนไพร กระทรวงสาธารณสุข ประเทศไทย. / National List of Herbal Medicinal Products, Ministry of Public Health, Thailand.',
       'A comprehensive review on disposition kinetics and dosage of oral administration of Andrographis paniculata. Front Pharmacol. 2022.',
       'World Health Organization. WHO monographs on selected medicinal plants, Vol. 2: Herba Andrographidis. Geneva: WHO; 2002.',
       'Memorial Sloan Kettering Cancer Center (MSKCC). Andrographis. Integrative Medicine — About Herbs.',
+      'Chaiyakunapruk N, et al. Comparative pharmacokinetics and safety evaluation of Andrographis paniculata formulations in mild COVID-19 patients. Front Pharmacol. 2023.',
+      'Yang Y, et al. Adverse Effects of Andrographolide Derivative Medications Compared to the Safe Use of Herbal Preparations of Andrographis paniculata: A Systematic Review and Meta-Analysis of Clinical Studies. Front Pharmacol. 2022;13:773282. doi:10.3389/fphar.2022.773282',
+      'Suwankesawong W, et al. Characterization of hypersensitivity reactions reported among Andrographis paniculata users in Thailand using the Health Product Vigilance Center (HPVC) database. BMC Complement Altern Med. 2014;14:515. doi:10.1186/1472-6882-14-515',
+      'Therapeutic Goods Administration (TGA). Andrographis paniculata (Andrographis) and anaphylaxis — updated safety review and supplementary report. TGA; 2026.',
+      'Medsafe. Reminder: Allergic reactions with Andrographis paniculata. Prescriber Update; 2025.',
+      'Zhang, et al. Andrographolide-induced PANoptosis underlies its multiple organ toxicity in mice. 2025. PMID:41371369.',
+      'Li, et al. Andrographolide: a review of its pharmacology, pharmacokinetics, toxicity and clinical trials and pharmaceutical researches. Phytother Res. 2023. doi:10.1002/ptr.7324',
     ],
   },
 });
