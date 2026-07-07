@@ -166,6 +166,35 @@ HERB_DB.register({
       en: '- Avoid injectable glutathione for cosmetic use from unregulated sources (risk of endotoxin/contamination and severe reactions); stop immediately and seek care if severe rash, skin peeling, high fever, or shock occurs — no long-term safety data\n- **Pregnancy/lactation:** insufficient data — avoid use [17]\n- **Sulfite sensitivity (inhaled form only):** consider urine sulfite screening before use [18]\n- **Hepatic or renal impairment:** consult a physician before use (no clear dose-adjustment guidance) [19]',
     },
 
+    labeledIndications: [
+      { th: '## สหรัฐอเมริกา (US FDA)', en: '## United States (US FDA)' },
+      {
+        th: 'ข้อบ่งใช้ที่ FDA รับรองมีเพียงเป็นส่วนประกอบใน **intraocular irrigating solution (BSS PLUS®)** สำหรับผ่าตัดตา (glutathione disulfide 0.184 มก./มล.) โดยระบุ **"NOT FOR INJECTION OR INTRAVENOUS INFUSION"** — FDA ยังไม่รับรอง glutathione แบบ systemic (IV/IM/oral) สำหรับข้อบ่งใช้ทางการแพทย์ใดๆ [20]',
+        en: 'The only FDA-approved indication is as a component of an **intraocular irrigating solution (BSS PLUS®)** for eye surgery (glutathione disulfide 0.184 mg/mL), labeled **"NOT FOR INJECTION OR INTRAVENOUS INFUSION."** No systemic (IV/IM/oral) glutathione is FDA-approved for any medical indication [20]',
+      },
+      {
+        th: '**Orphan drug designations (US):** liposomal glutathione สำหรับภาวะพร่อง glutathione ใน inborn errors of metabolism (IEMG); S-nitrosoglutathione สำหรับ cystic fibrosis; glutathione สำหรับภาวะปอดผิดปกติหลังปลูกถ่ายปอด [17]',
+        en: '**Orphan drug designations (US):** liposomal glutathione for glutathione deficiency in inborn errors of metabolism (IEMG); S-nitrosoglutathione for cystic fibrosis; glutathione for post-lung-transplant lung dysfunction [17]',
+      },
+      { th: '## ฟิลิปปินส์ / ไทย', en: '## Philippines / Thailand' },
+      {
+        th: '- **ฟิลิปปินส์ (FDA):** รับรองเป็น adjunct ลด neurotoxicity จาก cisplatin ในการรักษามะเร็ง [21]\n- **ไทย (อย.):** ไม่พบข้อบ่งใช้ systemic ที่ขึ้นทะเบียนเป็นยา — ผลิตภัณฑ์ส่วนใหญ่จัดเป็นอาหารเสริม',
+        en: '- **Philippines (FDA):** approved as an adjunct to reduce cisplatin-induced neurotoxicity in cancer treatment [21]\n- **Thailand (Thai FDA):** no registered systemic medical indication — most products are classified as dietary supplements, not drugs',
+      },
+    ],
+    offLabelAdult: [
+      { th: '## ผิวขาว / ฝ้า (Melasma) — หลักฐานมากที่สุด', en: '## Skin-lightening / melasma — best evidence' },
+      {
+        th: 'Systematic review: **oral 250–500 มก./วัน** และ **topical 2.0% oxidized glutathione** ลด melanin index บริเวณที่โดนแดดอย่างมีนัยสำคัญ ส่วน **IV** มี placebo-controlled เพียงชิ้นเดียวและผลไม่ถึงนัยสำคัญ (p=0.054) → **ไม่ควรใช้ IV** เพื่อข้อบ่งใช้นี้ (ขาดประสิทธิภาพ + เสี่ยงสูง) [22]',
+        en: 'Systematic review: **oral 250–500 mg/day** and **topical 2.0% oxidized glutathione** significantly reduce the melanin index in sun-exposed areas; the only placebo-controlled **IV** study was not significant (p=0.054) → **IV is not recommended** for this use (lacks efficacy, high risk) [22]',
+      },
+      { th: '## ข้อบ่งใช้อื่น', en: '## Other uses' },
+      {
+        th: '- **ลดพิษจากเคมีบำบัด (adjunct):** ลด neuro/nephrotoxicity จาก platinum (cisplatin, oxaliplatin) — 1.5 ก./ตร.ม. IV ก่อนเคมีบำบัด หรือ 600 มก./วัน IM วันที่ 2–5 ของรอบ [17]\n- **ภาวะมีบุตรยากในเพศชาย:** IM 600 มก. วันเว้นวัน นาน 2 เดือน — หลักฐานระดับ "possibly effective" เท่านั้น [17]\n- **หลักฐานจำกัด (anecdotal/preliminary, ไม่มี RCT ใหญ่):** atherosclerosis, เบาหวาน, โรคตับ, โรคปอด (สูดดม), พาร์กินสัน, กระตุ้นภูมิคุ้มกัน, ความจำเสื่อม [17]',
+        en: '- **Chemotherapy-toxicity adjunct:** reduce platinum (cisplatin, oxaliplatin) neuro/nephrotoxicity — 1.5 g/m² IV before chemotherapy, or 600 mg/day IM on days 2–5 of the cycle [17]\n- **Male infertility:** IM 600 mg every other day for 2 months — evidence only "possibly effective" [17]\n- **Limited evidence (anecdotal/preliminary, no large RCT):** atherosclerosis, diabetes, liver disease, lung disease (inhaled), Parkinson disease, immunostimulant, memory loss [17]',
+      },
+    ],
+
     counselingPoints: {
       th: '- ชนิดรับประทานมีชีวปริมาณออกฤทธิ์ต่ำ (ถูกย่อยที่ลำไส้)\n- การฉีดเพื่อความงามมีความเสี่ยงร้ายแรงและไม่มีหลักฐานความปลอดภัยระยะยาว\n- เลือกผลิตภัณฑ์ที่ได้มาตรฐาน และหลีกเลี่ยงบริการฉีดที่ไม่ได้อยู่ภายใต้การดูแลของแพทย์',
       en: '- Oral forms have low bioavailability (degraded in the gut)\n- Cosmetic injections carry serious risks and lack long-term safety evidence\n- Choose quality-assured products and avoid injection services not supervised by a physician',
@@ -191,6 +220,9 @@ HERB_DB.register({
       'Medscape Reference. Glutathione (dosing, adverse effects, pregnancy/lactation). 2024.',
       'LoCoco Wellness Clinic. Inhaled/nebulized glutathione protocol and sulfite-sensitivity screening. 2018.',
       'Care Hospitals. Glutathione — uses, side effects, and precautions (hepatic/renal impairment). Patient-education resource.',
+      'droracle.ai citing FDA labeling data — BSS PLUS® (balanced salt solution with glutathione) intraocular irrigating solution; "not for injection or intravenous infusion." 2026.',
+      'Sonthalia S, et al. Glutathione as a skin-lightening agent: facts, myths, evidence and controversies. Clin Cosmet Investig Dermatol. 2018;11:XXX (PMC5808366).',
+      'Glutathione as a skin-lightening agent and in melasma — systematic review. 2025. PMID:39444151.',
     ],
   },
 });
