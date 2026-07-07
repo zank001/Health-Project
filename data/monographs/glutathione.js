@@ -195,6 +195,62 @@ HERB_DB.register({
       },
     ],
 
+    metabolismEffects: [
+      {
+        th: '- **CYP3A4 (แบบ biphasic ตามความเข้มข้น):** เพิ่ม Vmax ของ testosterone 6β-hydroxylation (เพิ่ม affinity กับ P450 reductase และ cytochrome b5) แต่ที่ >4 mM กลับ **ยับยั้ง** (ในระบบ reconstituted) — ผลจึงขึ้นกับระดับ glutathione ในเซลล์ [23]\n- **GST & GGT:** glutathione เป็น substrate หลักของ GST (phase II conjugation ของสารพิษ/ยา) — การเปลี่ยนระดับ GSH กระทบ capacity ของ detoxification โดยตรง; GGT ที่ผิวลำไส้ย่อย glutathione ก่อนดูดซึม → เป็นกลไกหลักจำกัด oral bioavailability [24]\n- **ตัวขนส่งยา (drug transporters):** ข้อมูลเชิงกลไกชี้ว่าอาจมีผลต่อ cellular uptake ของยาบางชนิด (เช่น methotrexate) แต่ยังไม่มี clinical study ระบุขนาดของผลในมนุษย์ [25]',
+        en: '- **CYP3A4 (concentration-dependent, biphasic):** increases Vmax of testosterone 6β-hydroxylation (raising apparent affinity for P450 reductase and cytochrome b5) but at >4 mM becomes **inhibitory** (reconstituted system) — the effect depends on intracellular glutathione level [23]\n- **GST & GGT:** glutathione is the principal substrate of GST (phase II conjugation of toxins/drugs) — changes in GSH directly affect detoxification capacity; intestinal brush-border GGT degrades glutathione before absorption → the main limit on oral bioavailability [24]\n- **Drug transporters:** mechanistic data suggest possible effects on cellular uptake of some drugs (e.g. methotrexate), but no clinical study has quantified the magnitude in humans [25]',
+      },
+    ],
+    drugInteractions: [
+      {
+        table: {
+          headers: [
+            { th: 'ยา/กลุ่มยา', en: 'Drug / class' },
+            { th: 'กลไก', en: 'Mechanism' },
+            { th: 'ความเสี่ยง/ข้อควรระวัง', en: 'Risk / caution' },
+          ],
+          rows: [
+            [
+              { th: 'Platinum chemo (cisplatin, carboplatin, oxaliplatin)', en: 'Platinum chemo (cisplatin, carboplatin, oxaliplatin)' },
+              { th: 'GST-mediated conjugation, ลดฤทธิ์ oxidative ของยา', en: 'GST-mediated conjugation; lowers the drug’s oxidative effect' },
+              { th: 'อาจ**ลดประสิทธิภาพเคมีบำบัด** (ยกเว้นใช้เป็น adjunct ลด neurotoxicity) [26]', en: 'May **reduce chemotherapy efficacy** (except when used as an adjunct to reduce neurotoxicity) [26]' },
+            ],
+            [
+              { th: 'Cyclophosphamide', en: 'Cyclophosphamide' },
+              { th: 'GSH depletion/repletion กับ metabolite (acrolein) ในตับ', en: 'GSH depletion/repletion affecting the hepatic metabolite (acrolein)' },
+              { th: 'อาจปกป้องจาก toxicity โดยไม่รบกวนฤทธิ์ antitumor (สัตว์ทดลอง) [27]', en: 'May protect from toxicity without impairing antitumor effect (animal data) [27]' },
+            ],
+            [
+              { th: 'Immunosuppressants (cyclosporine, tacrolimus)', en: 'Immunosuppressants (cyclosporine, tacrolimus)' },
+              { th: 'กลไกยังไม่ชัดเจน', en: 'Mechanism unclear' },
+              { th: 'อาจกระทบระดับยาในเลือด — ติดตาม drug level ใกล้ชิด [28]', en: 'May affect blood levels — monitor drug levels closely [28]' },
+            ],
+            [
+              { th: 'Antipsychotics (chlorpromazine, haloperidol)', en: 'Antipsychotics (chlorpromazine, haloperidol)' },
+              { th: 'อาจกระทบ metabolism ของยา', en: 'May affect drug metabolism' },
+              { th: 'ระวังระดับยาในเลือดเปลี่ยนแปลง [28]', en: 'Watch for changes in blood levels [28]' },
+            ],
+            [
+              { th: 'Nitroglycerin / nitrates', en: 'Nitroglycerin / nitrates' },
+              { th: 'อาจเสริมฤทธิ์ vasodilation', en: 'May potentiate vasodilation' },
+              { th: 'เพิ่มความเสี่ยง hypotension เมื่อใช้ร่วมกัน [28]', en: 'Increased risk of hypotension when combined [28]' },
+            ],
+            [
+              { th: 'Acetaminophen (paracetamol)', en: 'Acetaminophen (paracetamol)' },
+              { th: 'GSH เป็น cofactor detoxify NAPQI (suicide substrate)', en: 'GSH is the key cofactor detoxifying NAPQI (suicide substrate)' },
+              { th: 'ใช้ประจำอาจลดฤทธิ์ยา แต่ให้หลัง overdose อาจช่วย detox — ควรแยกช่วงเวลา [29]', en: 'Routine co-use may reduce efficacy, but giving it after overdose may aid detox — separate timing [29]' },
+            ],
+          ],
+        },
+      },
+      {
+        note: {
+          th: '**คุณภาพหลักฐาน:** MedicineNet ระบุ glutathione มี *mild* interaction กับยา ≥89 รายการ และไม่มี moderate/major ที่ชัดเจน แต่ข้อมูลส่วนใหญ่เป็น mechanistic/in vitro หรือ clinical summary ที่ไม่ใช่ RCT — ควรใช้วิจารณญาณและติดตามผู้ป่วยรายบุคคล โดยเฉพาะผู้ที่ได้รับ platinum chemo (เสี่ยงลดประสิทธิภาพมากที่สุด) [30]',
+          en: '**Evidence quality:** MedicineNet lists *mild* interactions with ≥89 drugs and no clearly defined moderate/major interaction, but most data are mechanistic/in vitro or non-RCT clinical summaries — use clinical judgment and individualized monitoring, especially for patients on platinum chemotherapy (highest risk of reduced efficacy) [30]',
+        },
+      },
+    ],
+
     counselingPoints: {
       th: '- ชนิดรับประทานมีชีวปริมาณออกฤทธิ์ต่ำ (ถูกย่อยที่ลำไส้)\n- การฉีดเพื่อความงามมีความเสี่ยงร้ายแรงและไม่มีหลักฐานความปลอดภัยระยะยาว\n- เลือกผลิตภัณฑ์ที่ได้มาตรฐาน และหลีกเลี่ยงบริการฉีดที่ไม่ได้อยู่ภายใต้การดูแลของแพทย์',
       en: '- Oral forms have low bioavailability (degraded in the gut)\n- Cosmetic injections carry serious risks and lack long-term safety evidence\n- Choose quality-assured products and avoid injection services not supervised by a physician',
@@ -223,6 +279,14 @@ HERB_DB.register({
       'droracle.ai citing FDA labeling data — BSS PLUS® (balanced salt solution with glutathione) intraocular irrigating solution; "not for injection or intravenous infusion." 2026.',
       'Sonthalia S, et al. Glutathione as a skin-lightening agent: facts, myths, evidence and controversies. Clin Cosmet Investig Dermatol. 2018;11:XXX (PMC5808366).',
       'Glutathione as a skin-lightening agent and in melasma — systematic review. 2025. PMID:39444151.',
+      'Influence of Glutathione on the Catalytic Activity of Cytochrome P450 3A4. 1998. PMID:9439637.',
+      'Glutathione transferases: substrates, inhibitors and pro-drugs. Cancer Gene Ther (Nature). 2018.',
+      'Glutathione metabolism as a determinant of therapeutic efficacy: a review. 1984. PMID:6380705.',
+      'Glutathione-Mediated Conjugation of Anticancer Drugs. PMC. 2022.',
+      'Role of Glutathione in Metabolism-dependent Toxicity of Cyclophosphamide. Cancer Res. 1981.',
+      'droracle.ai clinical summary — glutathione drug interactions (immunosuppressants, antipsychotics, nitrates). 2025.',
+      'DrugBank. Glutathione: uses, interactions, mechanism of action. 2025.',
+      'MedicineNet. Glutathione: chemotherapy uses, warnings, side effects. 2022.',
     ],
   },
 });
