@@ -146,13 +146,48 @@ HERB_DB.register({
     ],
 
     contraindications: {
-      th: '- แพ้ฟ้าทะลายโจรหรือพืชในวงศ์ Acanthaceae\n- หญิงตั้งครรภ์และให้นมบุตร\n- ผู้ที่มีภาวะตับหรือไตบกพร่องรุนแรง',
-      en: '- Allergy to andrographis or plants in the Acanthaceae family\n- Pregnancy and breastfeeding\n- Severe hepatic or renal impairment',
+      th: '- **ประวัติภูมิไวเกิน/แพ้รุนแรง (hypersensitivity/anaphylaxis) ต่อฟ้าทะลายโจร** หรือพืชในวงศ์ Acanthaceae — ห้ามใช้ซ้ำ (ฐานข้อมูลเภสัชระวังของไทยพบปฏิกิริยาตั้งแต่ผื่นเล็กน้อยจนถึง anaphylactic shock และ angioedema) [12]\n- **หญิงตั้งครรภ์** — ยังไม่สามารถยืนยันความปลอดภัยได้ (ดูข้อพิจารณาในหัวข้อการตั้งครรภ์) [17]\n- หญิงให้นมบุตร (ข้อมูลไม่เพียงพอ)\n- ผู้ที่มีภาวะตับหรือไตบกพร่องรุนแรง',
+      en: '- **History of hypersensitivity / severe allergy (anaphylaxis) to andrographis** or plants in the Acanthaceae family — do not re-expose (the Thai pharmacovigilance database documented reactions from mild rash to anaphylactic shock and angioedema) [12]\n- **Pregnancy** — safety cannot be confirmed (see the pregnancy section) [17]\n- Breastfeeding (insufficient data)\n- Severe hepatic or renal impairment',
     },
-    warningsPrecautions: {
-      th: '- หยุดใช้ทันทีหากมีอาการแพ้ (ผื่น บวม หายใจลำบาก)\n- อาจลดความดันโลหิต ระวังในผู้ที่ใช้ยาลดความดัน\n- อาจกระตุ้นภูมิคุ้มกัน ควรระวังในผู้ที่ใช้ยากดภูมิคุ้มกัน',
-      en: '- Stop immediately if allergic symptoms occur (rash, swelling, difficulty breathing)\n- May lower blood pressure; use caution with antihypertensive drugs\n- May stimulate the immune system; use caution in people taking immunosuppressants',
-    },
+    warningsPrecautions: [
+      { th: '## หยุดใช้ทันทีหากมีอาการแพ้', en: '## Stop immediately if allergic symptoms occur' },
+      {
+        th: 'หยุดใช้ทันทีและไปพบแพทย์หากมีผื่น บวม แน่นคอ หรือหายใจลำบาก (เสี่ยง anaphylaxis) และห้ามใช้ซ้ำหากเคยมีอาการแพ้',
+        en: 'Stop immediately and seek medical care if rash, swelling, throat tightness, or difficulty breathing occurs (risk of anaphylaxis); do not re-use if you have had an allergic reaction.',
+      },
+      { th: '## อันตรกิริยากับยาที่เมแทบอไลซ์ผ่าน CYP450', en: '## Interactions with drugs metabolized by CYP450' },
+      {
+        th: 'การศึกษาในหลอดทดลองและสัตว์พบว่าสารสกัดฟ้าทะลายโจรและ andrographolide **ยับยั้ง CYP2C9 และ CYP3A4** (ทั้งใน rat และ human hepatocytes; Ki < 20 μg/mL) และอาจยับยั้ง CYP2D6 ด้วย [18,19,21] นอกจากนี้ในหนูยังพบว่า**เพิ่ม clearance ของ theophylline** (substrate ของ CYP1A2) ซึ่งอาจลดประสิทธิภาพยาที่ผ่าน CYP1A2 (เช่น theophylline, caffeine) [20]',
+        en: 'In vitro and animal studies show that andrographis extract and andrographolide **inhibit CYP2C9 and CYP3A4** (in both rat and human hepatocytes; Ki < 20 μg/mL) and may also inhibit CYP2D6 [18,19,21]. In rats it also **increased theophylline clearance** (a CYP1A2 substrate), which could reduce the efficacy of CYP1A2-metabolized drugs (e.g. theophylline, caffeine) [20]',
+      },
+      {
+        note: {
+          th: 'อย่างไรก็ตาม systematic review สรุปว่าหลักฐานในมนุษย์**ยังไม่เพียงพอ**ที่จะยืนยันว่าฟ้าทะลายโจรเป็น CYP inhibitor ที่มีนัยสำคัญทางคลินิก จึงควรระวังไว้ก่อนเมื่อใช้ร่วมกับยาที่มีช่วงการรักษาแคบ จนกว่าจะมีข้อมูลเพิ่มเติม [22]',
+          en: 'However, a systematic review concluded that human evidence is **insufficient** to confirm andrographis as a clinically significant CYP inhibitor; nonetheless, use caution with narrow-therapeutic-index drugs until more data are available [22]',
+        },
+      },
+      { th: '## ความเสี่ยงเลือดออก (ฤทธิ์ต้านเกล็ดเลือด)', en: '## Bleeding risk (antiplatelet effect)' },
+      {
+        th: 'andrographolide และ 14-deoxy-11,12-didehydroandrographolide ยับยั้งการเกาะกลุ่มของเกล็ดเลือด (thrombin-/ADP-induced) แบบขึ้นกับขนาดและเวลา และการศึกษาทางคลินิกในผู้ป่วยโรคหัวใจ/หลอดเลือดสมอง 63 รายพบการยับยั้ง ADP-induced platelet aggregation อย่างมีนัยสำคัญ [23,24] จึงควรใช้ด้วยความระมัดระวังในผู้ที่มีภาวะเลือดออกผิดปกติ ผู้ที่ใช้ยาต้านการแข็งตัวของเลือด/ยาต้านเกล็ดเลือด และก่อนการผ่าตัด',
+        en: 'Andrographolide and 14-deoxy-11,12-didehydroandrographolide inhibit platelet aggregation (thrombin-/ADP-induced) in a dose- and time-dependent manner, and a clinical study in 63 cardiovascular/cerebrovascular patients found significant inhibition of ADP-induced platelet aggregation [23,24]. Use caution in people with bleeding disorders, those on anticoagulant/antiplatelet drugs, and before surgery.',
+      },
+      {
+        note: {
+          th: 'อย่างไรก็ตาม การศึกษาในอาสาสมัครไทยสุขภาพดี 10 รายที่ได้รับฟ้าทะลายโจร 2 กรัม วันละ 3 ครั้ง (ภายใน 1 วัน) ไม่พบการเปลี่ยนแปลงของ platelet aggregation อย่างมีนัยสำคัญทางสถิติ (แม้มีแนวโน้มลดลง) ผลจึงอาจขึ้นกับขนาดและระยะเวลาที่ใช้ [25]',
+          en: 'However, a study in 10 healthy Thai volunteers given andrographis 2 g three times within one day found no statistically significant change in platelet aggregation (though a downward trend was seen); the effect may depend on dose and duration [25]',
+        },
+      },
+      { th: '## โรคภูมิต้านตนเองและการปรับภูมิคุ้มกัน', en: '## Autoimmune disease and immunomodulation' },
+      {
+        th: 'ฟ้าทะลายโจรมีฤทธิ์**ปรับภูมิคุ้มกันที่ขึ้นกับบริบท**: บางการศึกษาพบว่า andrographolide **กดภูมิคุ้มกัน** (ยับยั้ง T cell activation, ลด IL-2, ลดความรุนแรงของ EAE ซึ่งเป็นโมเดลของ multiple sclerosis) [26] ขณะที่บางการศึกษาพบฤทธิ์**กระตุ้นภูมิคุ้มกัน** (เพิ่ม IL-2, IFN-γ, กระตุ้น cytotoxic T lymphocyte) [27] ความไม่สอดคล้องนี้ทำให้ควรใช้ด้วยความระมัดระวังในผู้ป่วยโรคภูมิต้านตนเองหรือผู้ที่ใช้ยากดภูมิคุ้มกัน จนกว่าจะมีข้อมูลทางคลินิกชัดเจนกว่านี้',
+        en: 'Andrographis has **context-dependent immunomodulatory** activity: some studies show andrographolide is **immunosuppressive** (inhibits T-cell activation, lowers IL-2, reduces severity of EAE — a multiple sclerosis model) [26], while others show **immunostimulant** effects (increased IL-2, IFN-γ, activation of cytotoxic T lymphocytes) [27]. Because of this inconsistency, use caution in people with autoimmune disease or on immunosuppressants until clearer clinical data are available.',
+      },
+      { th: '## อื่น ๆ', en: '## Other' },
+      {
+        th: 'อาจลดความดันโลหิต — ควรระวังในผู้ที่ใช้ยาลดความดันโลหิต',
+        en: 'May lower blood pressure — use caution in people taking antihypertensive drugs.',
+      },
+    ],
 
     labeledIndications: {
       th: 'บรรเทาอาการของโรคหวัด เช่น เจ็บคอ และบรรเทาอาการท้องเสียชนิดที่ไม่เกิดจากการติดเชื้อ (ตามบัญชียาหลักแห่งชาติด้านสมุนไพร) [6]',
@@ -172,13 +207,13 @@ HERB_DB.register({
     ],
 
     drugInteractions: {
-      th: '- ยาต้านการแข็งตัวของเลือด: อาจเพิ่มความเสี่ยงเลือดออก\n- ยากดภูมิคุ้มกัน: อาจต้านฤทธิ์กัน (ฟ้าทะลายโจรกระตุ้นภูมิคุ้มกัน)\n- ยาลดความดันโลหิต/ยาลดน้ำตาล: อาจเสริมฤทธิ์',
-      en: '- Anticoagulants: may increase bleeding risk\n- Immunosuppressants: may be antagonistic (andrographis stimulates immunity)\n- Antihypertensive / antidiabetic drugs: may have additive effects',
+      th: '- **ยาต้านการแข็งตัวของเลือด / ยาต้านเกล็ดเลือด**: อาจเพิ่มความเสี่ยงเลือดออก (ฤทธิ์ต้านเกล็ดเลือด) [23,24]\n- **ยาที่เป็น substrate ของ CYP2C9 / CYP3A4**: อาจเพิ่มระดับยา (ฟ้าทะลายโจรยับยั้งในหลอดทดลอง/สัตว์) — ระวังยาช่วงการรักษาแคบ [18,19,21]\n- **ยาที่ผ่าน CYP1A2 (เช่น theophylline, caffeine)**: อาจเพิ่ม clearance และลดประสิทธิภาพ (ข้อมูลในสัตว์) [20]\n- **ยากดภูมิคุ้มกัน**: อาจต้านฤทธิ์กัน (ฤทธิ์ปรับภูมิคุ้มกัน) [26,27]\n- **ยาลดความดันโลหิต / ยาลดน้ำตาล**: อาจเสริมฤทธิ์',
+      en: '- **Anticoagulants / antiplatelets**: may increase bleeding risk (antiplatelet effect) [23,24]\n- **CYP2C9 / CYP3A4 substrate drugs**: may increase drug levels (andrographis inhibits these in vitro/animal) — caution with narrow-therapeutic-index drugs [18,19,21]\n- **CYP1A2-metabolized drugs (e.g. theophylline, caffeine)**: may increase clearance and reduce efficacy (animal data) [20]\n- **Immunosuppressants**: may be antagonistic (immunomodulatory effect) [26,27]\n- **Antihypertensive / antidiabetic drugs**: may have additive effects',
     },
 
     pregnancyConsiderations: {
-      th: 'ห้ามใช้ในหญิงตั้งครรภ์ เนื่องจากมีข้อมูลว่าอาจมีผลต่อการตั้งครรภ์',
-      en: 'Contraindicated in pregnancy, as there are data suggesting it may affect pregnancy.',
+      th: 'ไม่แนะนำ/ห้ามใช้ในหญิงตั้งครรภ์ การศึกษา developmental toxicity ในหนู Wistar (สารสกัดฟ้าทะลายโจร 30–300 มก./กก. วันตั้งครรภ์ที่ 7–17) ไม่พบความพิการที่ชัดเจน แต่พบ **delayed ossification** (sternebrae/ischium) และความผิดปกติของจำนวนซี่โครงในกลุ่มขนาดสูง ตีความว่าเป็นพัฒนาการช้าชั่วคราวมากกว่าความพิการแท้จริง ข้อมูลยังจำกัดเฉพาะสัตว์ทดลอง จึงยืนยันความปลอดภัยในคนไม่ได้ [17]',
+      en: 'Not recommended / contraindicated in pregnancy. A developmental toxicity study in Wistar rats (andrographis extract 30–300 mg/kg on gestation days 7–17) found no clear malformations but showed **delayed ossification** (sternebrae/ischium) and rib-number anomalies at high doses, interpreted as transient developmental delay rather than true teratogenicity. Data are limited to animals, so human safety cannot be confirmed [17]',
     },
     breastfeedingConsiderations: {
       th: 'ไม่แนะนำให้ใช้ระหว่างให้นมบุตร เนื่องจากข้อมูลความปลอดภัยยังไม่เพียงพอ',
@@ -218,6 +253,17 @@ HERB_DB.register({
       'Medsafe. Reminder: Allergic reactions with Andrographis paniculata. Prescriber Update; 2025.',
       'Zhang, et al. Andrographolide-induced PANoptosis underlies its multiple organ toxicity in mice. 2025. PMID:41371369.',
       'Li, et al. Andrographolide: a review of its pharmacology, pharmacokinetics, toxicity and clinical trials and pharmaceutical researches. Phytother Res. 2023. doi:10.1002/ptr.7324',
+      'Exploratory developmental toxicity study of Andrographis paniculata extract in pregnant Wistar rats. Indian J Tradit Knowl. 2025.',
+      'Pekthong D, et al. Effects of Andrographis paniculata extract and andrographolide on hepatic cytochrome P450 mRNA expression and monooxygenase activities after in vivo administration to rats and in vitro in rat and human hepatocyte cultures. Chem Biol Interact. 2009;179(2-3):247-255. doi:10.1016/j.cbi.2008.10.054',
+      'Pekthong D, et al. Differential inhibition of rat and human hepatic cytochrome P450 by Andrographis paniculata extract and andrographolide. J Ethnopharmacol. 2008;115(3):432-440. doi:10.1016/j.jep.2007.10.013',
+      'Chien CF, et al. Herb-drug interaction of Andrographis paniculata extract and andrographolide on the pharmacokinetics of theophylline in rats. Chem Biol Interact. 2010;184(3):458-465. doi:10.1016/j.cbi.2010.01.036',
+      'Pekthong D, et al. In vitro determination of the effect of Andrographis paniculata extracts and andrographolide on human hepatic cytochrome P450 activities. J Nat Med. 2011;65(3-4):440-447. doi:10.1007/s11418-011-0516-z',
+      'Pholphana N, et al. The effects of Andrographis paniculata (Burm.f.) Nees extract and diterpenoids on CYP450 isoform activities: a review of possible herb-drug interaction risks. Phytother Res. 2016. doi:10.1002/ptr.5679',
+      'Zhang CY, et al. [Study of Andrographis paniculata extracts on antiplatelet aggregation and release reaction and its mechanism]. Zhongguo Zhong Xi Yi Jie He Za Zhi. 1994;14(1):28-30.',
+      'Thisoda P, et al. Inhibitory effect of Andrographis paniculata extract and its active diterpenoids on platelet aggregation. Eur J Pharmacol. 2006;553(1-3):39-45. doi:10.1016/j.ejphar.2006.09.052',
+      'Sattayasai J, et al. The Effects of Andrographis paniculata on Platelet Activity in Healthy Thai Volunteers. Evid Based Complement Alternat Med. 2018;2018:2458281. doi:10.1155/2018/2458281',
+      'Iruretagoyena MI, et al. Andrographolide interferes with T cell activation and reduces experimental autoimmune encephalomyelitis in the mouse. J Pharmacol Exp Ther. 2005;312(1):366-372. doi:10.1124/jpet.104.072512',
+      'Rajagopal S, et al. Activation of cytotoxic T lymphocyte responses and attenuation of tumor growth in vivo by Andrographis paniculata extract and andrographolide. Immunopharmacol Immunotoxicol. 2007;29(1):81-93. doi:10.1080/08923970701282726',
     ],
   },
 });
