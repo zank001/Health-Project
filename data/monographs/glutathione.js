@@ -158,12 +158,12 @@ HERB_DB.register({
     ],
 
     contraindications: {
-      th: '- ประวัติแพ้/ภูมิไวเกิน (hypersensitivity) ต่อ glutathione — ห้ามใช้ซ้ำ (มีรายงาน anaphylaxis, SJS/TEN) [1,2,4]\n- ไม่ควรใช้ชนิดฉีดเพื่อความงามจากแหล่งที่ไม่ได้มาตรฐาน (US FDA ไม่รับรองความปลอดภัย/ความปลอดโปร่ง) [5]\n- หญิงตั้งครรภ์/ให้นมบุตร: ข้อมูลไม่เพียงพอ — หลีกเลี่ยง',
-      en: '- History of hypersensitivity to glutathione — do not re-expose (anaphylaxis, SJS/TEN reported) [1,2,4]\n- Avoid injectable forms for cosmetic use from unregulated sources (US FDA does not assure their safety/sterility) [5]\n- Pregnancy/breastfeeding: insufficient data — avoid',
+      th: '- **แพ้/ภูมิไวเกิน (hypersensitivity)** ต่อ glutathione หรือส่วนประกอบ (รวมชื่อพ้อง: Gamma-L-glutamyl-L-cysteinyl glycine, GSH, L-glutathione) — ห้ามใช้ซ้ำ (มีรายงาน anaphylaxis, SJS/TEN) [16][1,2,4]\n- **โรคหืด (asthma) — เฉพาะรูปพ่น/สูดดม (inhaled/nebulized):** กระตุ้นหลอดลมหดเกร็ง (ในผู้ป่วยหืดเล็กน้อยลด FEV1 ~19%, เพิ่มแรงต้านทางเดินหายใจ ~61%) จากกลไกซัลไฟต์ [11]\n- หลีกเลี่ยงชนิดฉีดเพื่อความงามจากแหล่งที่ไม่ได้มาตรฐาน (US FDA ไม่รับรองความปลอดภัย/ความปลอดโปร่ง) [5]',
+      en: '- **Hypersensitivity** to glutathione or any excipient (synonyms: Gamma-L-glutamyl-L-cysteinyl glycine, GSH, L-glutathione) — do not re-expose (anaphylaxis, SJS/TEN reported) [16][1,2,4]\n- **Asthma — inhaled/nebulized form only:** triggers bronchoconstriction (in mild asthma, FEV1 ↓ ~19%, airway resistance ↑ ~61%) via a sulfite mechanism [11]\n- Avoid injectable forms for cosmetic use from unregulated sources (US FDA does not assure their safety/sterility) [5]',
     },
     warningsPrecautions: {
-      th: '- หลีกเลี่ยงการฉีดกลูตาไธโอนเพื่อความงามจากแหล่งที่ไม่ได้มาตรฐาน (เสี่ยง endotoxin/ปนเปื้อนและปฏิกิริยารุนแรง)\n- หยุดใช้ทันทีและพบแพทย์หากมีผื่นรุนแรง ผิวลอก ไข้สูง หรืออาการช็อก\n- ยังไม่มีข้อมูลความปลอดภัยระยะยาวของการฉีด',
-      en: '- Avoid injectable glutathione for cosmetic use from unregulated sources (risk of endotoxin/contamination and severe reactions)\n- Stop immediately and seek care if severe rash, skin peeling, high fever, or shock occurs\n- No long-term safety data exist for injection',
+      th: '- หลีกเลี่ยงการฉีดกลูตาไธโอนเพื่อความงามจากแหล่งที่ไม่ได้มาตรฐาน (เสี่ยง endotoxin/ปนเปื้อนและปฏิกิริยารุนแรง); หยุดใช้ทันทีและพบแพทย์หากมีผื่นรุนแรง ผิวลอก ไข้สูง หรือช็อก — ยังไม่มีข้อมูลความปลอดภัยระยะยาว\n- **ตั้งครรภ์/ให้นมบุตร:** ข้อมูลไม่เพียงพอ — แนะนำหลีกเลี่ยง [17]\n- **ภาวะไวต่อซัลไฟต์ (เฉพาะรูปสูดดม):** พิจารณาคัดกรอง sulfite ในปัสสาวะก่อนใช้ [18]\n- **โรคตับหรือไตบกพร่อง:** ควรปรึกษาแพทย์ก่อนใช้ (ยังไม่มีคำแนะนำการปรับขนาดที่ชัดเจน) [19]',
+      en: '- Avoid injectable glutathione for cosmetic use from unregulated sources (risk of endotoxin/contamination and severe reactions); stop immediately and seek care if severe rash, skin peeling, high fever, or shock occurs — no long-term safety data\n- **Pregnancy/lactation:** insufficient data — avoid use [17]\n- **Sulfite sensitivity (inhaled form only):** consider urine sulfite screening before use [18]\n- **Hepatic or renal impairment:** consult a physician before use (no clear dose-adjustment guidance) [19]',
     },
 
     counselingPoints: {
@@ -187,6 +187,10 @@ HERB_DB.register({
       'ESPEN guideline — parenteral glutamine contraindication in acute kidney injury / kidney failure (cited in droracle.ai).',
       'Glutathione in the treatment of chronic fatty liver diseases. 1994. PMID:7569285.',
       'Apni Care clinical guide (non-peer-reviewed). 2025.',
+      'RxList. Glutathione: uses, side effects, warnings. 2021.',
+      'Medscape Reference. Glutathione (dosing, adverse effects, pregnancy/lactation). 2024.',
+      'LoCoco Wellness Clinic. Inhaled/nebulized glutathione protocol and sulfite-sensitivity screening. 2018.',
+      'Care Hospitals. Glutathione — uses, side effects, and precautions (hepatic/renal impairment). Patient-education resource.',
     ],
   },
 });
