@@ -206,10 +206,89 @@ HERB_DB.register({
       },
     ],
 
-    drugInteractions: {
-      th: '- **ยาต้านการแข็งตัวของเลือด / ยาต้านเกล็ดเลือด**: อาจเพิ่มความเสี่ยงเลือดออก (ฤทธิ์ต้านเกล็ดเลือด) [23,24]\n- **ยาที่เป็น substrate ของ CYP2C9 / CYP3A4**: อาจเพิ่มระดับยา (ฟ้าทะลายโจรยับยั้งในหลอดทดลอง/สัตว์) — ระวังยาช่วงการรักษาแคบ [18,19,21]\n- **ยาที่ผ่าน CYP1A2 (เช่น theophylline, caffeine)**: อาจเพิ่ม clearance และลดประสิทธิภาพ (ข้อมูลในสัตว์) [20]\n- **ยากดภูมิคุ้มกัน**: อาจต้านฤทธิ์กัน (ฤทธิ์ปรับภูมิคุ้มกัน) [26,27]\n- **ยาลดความดันโลหิต / ยาลดน้ำตาล**: อาจเสริมฤทธิ์',
-      en: '- **Anticoagulants / antiplatelets**: may increase bleeding risk (antiplatelet effect) [23,24]\n- **CYP2C9 / CYP3A4 substrate drugs**: may increase drug levels (andrographis inhibits these in vitro/animal) — caution with narrow-therapeutic-index drugs [18,19,21]\n- **CYP1A2-metabolized drugs (e.g. theophylline, caffeine)**: may increase clearance and reduce efficacy (animal data) [20]\n- **Immunosuppressants**: may be antagonistic (immunomodulatory effect) [26,27]\n- **Antihypertensive / antidiabetic drugs**: may have additive effects',
-    },
+    metabolismEffects: [
+      {
+        th: 'กลไกหลักของอันตรกิริยาระหว่างฟ้าทะลายโจรกับยา (herb-drug interaction) คือการมีผลต่อเอนไซม์ **cytochrome P450 (CYP)** ทั้งการยับยั้งและเหนี่ยวนำ ซึ่งกระทบเภสัชจลนศาสตร์ของยาหลายกลุ่ม รวมทั้งพบฤทธิ์เสริมกันเชิงเภสัชพลศาสตร์กับยาต้านการอักเสบและยาต้านเบาหวานบางชนิด [28]',
+        en: 'The main mechanism of andrographis herb-drug interactions is an effect on **cytochrome P450 (CYP)** enzymes — both inhibition and induction — altering the pharmacokinetics of several drug classes, along with pharmacodynamic synergy with some anti-inflammatory and antidiabetic drugs [28]',
+      },
+      {
+        th: '- การศึกษาในหลอดทดลองด้วยเอนไซม์ CYP ของมนุษย์ยืนยันว่าสารสกัดฟ้าทะลายโจรและ andrographolide **ยับยั้ง CYP2C9, CYP2D6 และ CYP3A4** อย่างมีนัยสำคัญ (ความรุนแรงต่างกันตามชนิดสารสกัด) [21]\n- การศึกษาใน rat และ human hepatocyte พบ **CYP mRNA และ monooxygenase activity ลดลง** ทั้ง in vivo และ in vitro [18] และพบการยับยั้งที่แตกต่างกันต่อ CYP1A2, CYP2C9 และ CYP3A4 [19]',
+        en: '- In vitro studies with human CYP enzymes confirm that andrographis extract and andrographolide **significantly inhibit CYP2C9, CYP2D6, and CYP3A4** (extent varies by extract type) [21]\n- Rat and human hepatocyte studies show **reduced CYP mRNA and monooxygenase activity** both in vivo and in vitro [18], with differential inhibition of CYP1A2, CYP2C9, and CYP3A4 [19]',
+      },
+      {
+        note: {
+          th: 'systematic review ที่ทบทวนผลต่อ CYP450 สรุปว่าหลักฐานในมนุษย์**ยังไม่เพียงพอ**ที่จะยืนยันความเสี่ยงอันตรกิริยาอย่างชัดเจน แต่แนะนำให้ระวังเชิงคลินิกไว้ก่อน โดยเฉพาะยาที่มีช่วงการรักษาแคบ (narrow therapeutic index) [22]',
+          en: 'A systematic review of CYP450 effects concluded that human evidence is **insufficient** to firmly establish the interaction risk, but advised clinical caution, especially with narrow-therapeutic-index drugs [22]',
+        },
+      },
+    ],
+    drugInteractions: [
+      {
+        th: 'สรุปอันตรกิริยาที่ควรระวัง (ส่วนใหญ่จากข้อมูลในสัตว์/หลอดทดลอง — ความสำคัญทางคลินิกในมนุษย์ยังต้องการข้อมูลเพิ่มเติม):',
+        en: 'Interactions to watch for (mostly from animal/in-vitro data — clinical significance in humans needs further evidence):',
+      },
+      {
+        table: {
+          headers: [
+            { th: 'ยา / กลุ่มยา', en: 'Drug / class' },
+            { th: 'กลไกและผล', en: 'Mechanism & effect' },
+            { th: 'คำแนะนำ', en: 'Recommendation' },
+          ],
+          rows: [
+            [
+              { th: 'Theophylline / aminophylline / doxofylline', en: 'Theophylline / aminophylline / doxofylline' },
+              { th: 'PK (CYP1A2): เพิ่ม clearance/ลด AUC ในขนาดต่ำ, สะสมในขนาดสูง', en: 'PK (CYP1A2): ↑clearance/↓AUC at low doses, accumulation at high doses' },
+              { th: 'ติดตามอาการ/ระดับยา อาจกระทบประสิทธิภาพหรือความเป็นพิษ [20,28]', en: 'Monitor response/levels; may affect efficacy or toxicity [20,28]' },
+            ],
+            [
+              { th: 'NSAIDs: etoricoxib, nabumetone, naproxen', en: 'NSAIDs: etoricoxib, nabumetone, naproxen' },
+              { th: 'PK (CYP2C9): เหนี่ยวนำ metabolism → ลดระดับยา', en: 'PK (CYP2C9): induced metabolism → lower drug levels' },
+              { th: 'อาจลดประสิทธิภาพ ติดตามการตอบสนอง [28]', en: 'May reduce efficacy; monitor response [28]' },
+            ],
+            [
+              { th: 'ยาต้านเบาหวาน: tolbutamide, glibenclamide, glimepiride, metformin, gliclazide', en: 'Antidiabetics: tolbutamide, glibenclamide, glimepiride, metformin, gliclazide' },
+              { th: 'PD: เสริมฤทธิ์ลดน้ำตาล', en: 'PD: additive glucose-lowering' },
+              { th: 'เสี่ยง hypoglycemia — ติดตามระดับน้ำตาล [28]', en: 'Hypoglycemia risk — monitor blood glucose [28]' },
+            ],
+            [
+              { th: 'Warfarin', en: 'Warfarin' },
+              { th: 'PK: เพิ่มระดับ warfarin', en: 'PK: increased warfarin levels' },
+              { th: 'เสี่ยง INR สูง/เลือดออก — ติดตาม INR [28]', en: 'Risk of high INR/bleeding — monitor INR [28]' },
+            ],
+            [
+              { th: 'Midazolam', en: 'Midazolam' },
+              { th: 'PK (CYP3A4): เปลี่ยนแปลง PK', en: 'PK (CYP3A4): altered pharmacokinetics' },
+              { th: 'ระวังยาที่ผ่าน CYP3A4 [28]', en: 'Caution with CYP3A4 substrates [28]' },
+            ],
+            [
+              { th: 'ยาต้านการแข็งตัวของเลือด/ต้านเกล็ดเลือด (aspirin, clopidogrel, warfarin)', en: 'Anticoagulants/antiplatelets (aspirin, clopidogrel, warfarin)' },
+              { th: 'PD: เสริมฤทธิ์ต้านเกล็ดเลือด', en: 'PD: additive antiplatelet effect' },
+              { th: 'เสี่ยงเลือดออก — ระวัง/ติดตาม [23,24]', en: 'Bleeding risk — caution/monitor [23,24]' },
+            ],
+            [
+              { th: 'ยาลดความดันโลหิต', en: 'Antihypertensives' },
+              { th: 'PD: เสริมฤทธิ์ลดความดัน', en: 'PD: additive blood-pressure lowering' },
+              { th: 'เสี่ยงความดันต่ำ — ติดตามความดัน [29]', en: 'Hypotension risk — monitor blood pressure [29]' },
+            ],
+            [
+              { th: 'ยากดภูมิคุ้มกัน', en: 'Immunosuppressants' },
+              { th: 'PD: ฤทธิ์ปรับภูมิคุ้มกัน (กระตุ้น/กด ขึ้นกับบริบท)', en: 'PD: immunomodulatory (stimulating/suppressing, context-dependent)' },
+              { th: 'อาจกระทบประสิทธิภาพ — ระวัง [26,27]', en: 'May affect efficacy — caution [26,27]' },
+            ],
+            [
+              { th: 'ยาต้านไวรัส (รวม HIV)', en: 'Antivirals (including HIV)' },
+              { th: 'PK (CYP) + ตับ: อาจเปลี่ยน metabolism และเพิ่มเสี่ยงพิษต่อตับ', en: 'PK (CYP) + hepatic: may alter metabolism and add to hepatotoxicity risk' },
+              { th: 'ระวังหากยามีพิษต่อตับ — ติดตาม LFT [18]', en: 'Caution with hepatotoxic agents — monitor LFT [18]' },
+            ],
+            [
+              { th: 'ยาต้านมะเร็ง: 5-fluorouracil, cisplatin, paclitaxel', en: 'Anticancer: 5-fluorouracil, cisplatin, paclitaxel' },
+              { th: 'PD: synergism', en: 'PD: synergism' },
+              { th: 'อาจเพิ่มฤทธิ์/ความเป็นพิษ — ระวัง [28]', en: 'May increase effect/toxicity — caution [28]' },
+            ],
+          ],
+        },
+      },
+    ],
 
     pregnancyConsiderations: {
       th: 'ไม่แนะนำ/ห้ามใช้ในหญิงตั้งครรภ์ การศึกษา developmental toxicity ในหนู Wistar (สารสกัดฟ้าทะลายโจร 30–300 มก./กก. วันตั้งครรภ์ที่ 7–17) ไม่พบความพิการที่ชัดเจน แต่พบ **delayed ossification** (sternebrae/ischium) และความผิดปกติของจำนวนซี่โครงในกลุ่มขนาดสูง ตีความว่าเป็นพัฒนาการช้าชั่วคราวมากกว่าความพิการแท้จริง ข้อมูลยังจำกัดเฉพาะสัตว์ทดลอง จึงยืนยันความปลอดภัยในคนไม่ได้ [17]',
@@ -264,6 +343,8 @@ HERB_DB.register({
       'Sattayasai J, et al. The Effects of Andrographis paniculata on Platelet Activity in Healthy Thai Volunteers. Evid Based Complement Alternat Med. 2018;2018:2458281. doi:10.1155/2018/2458281',
       'Iruretagoyena MI, et al. Andrographolide interferes with T cell activation and reduces experimental autoimmune encephalomyelitis in the mouse. J Pharmacol Exp Ther. 2005;312(1):366-372. doi:10.1124/jpet.104.072512',
       'Rajagopal S, et al. Activation of cytotoxic T lymphocyte responses and attenuation of tumor growth in vivo by Andrographis paniculata extract and andrographolide. Immunopharmacol Immunotoxicol. 2007;29(1):81-93. doi:10.1080/08923970701282726',
+      'Yuandani, et al. Potential pharmacokinetic and pharmacodynamic herb-drug interactions of Andrographis paniculata: a systematic review. J Herbmed Pharmacol. 2022;11(2). doi:10.34172/jhp.2022.24',
+      'WebMD. Andrographis. Ingredient monograph (based on pharmacological interaction data).',
     ],
   },
 });
