@@ -157,6 +157,10 @@ HERB_DB.register({
       },
     ],
 
+    contraindications: {
+      th: '- ประวัติแพ้/ภูมิไวเกิน (hypersensitivity) ต่อ glutathione — ห้ามใช้ซ้ำ (มีรายงาน anaphylaxis, SJS/TEN) [1,2,4]\n- ไม่ควรใช้ชนิดฉีดเพื่อความงามจากแหล่งที่ไม่ได้มาตรฐาน (US FDA ไม่รับรองความปลอดภัย/ความปลอดโปร่ง) [5]\n- หญิงตั้งครรภ์/ให้นมบุตร: ข้อมูลไม่เพียงพอ — หลีกเลี่ยง',
+      en: '- History of hypersensitivity to glutathione — do not re-expose (anaphylaxis, SJS/TEN reported) [1,2,4]\n- Avoid injectable forms for cosmetic use from unregulated sources (US FDA does not assure their safety/sterility) [5]\n- Pregnancy/breastfeeding: insufficient data — avoid',
+    },
     warningsPrecautions: {
       th: '- หลีกเลี่ยงการฉีดกลูตาไธโอนเพื่อความงามจากแหล่งที่ไม่ได้มาตรฐาน (เสี่ยง endotoxin/ปนเปื้อนและปฏิกิริยารุนแรง)\n- หยุดใช้ทันทีและพบแพทย์หากมีผื่นรุนแรง ผิวลอก ไข้สูง หรืออาการช็อก\n- ยังไม่มีข้อมูลความปลอดภัยระยะยาวของการฉีด',
       en: '- Avoid injectable glutathione for cosmetic use from unregulated sources (risk of endotoxin/contamination and severe reactions)\n- Stop immediately and seek care if severe rash, skin peeling, high fever, or shock occurs\n- No long-term safety data exist for injection',
