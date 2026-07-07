@@ -290,13 +290,46 @@ HERB_DB.register({
       },
     ],
 
-    pregnancyConsiderations: {
-      th: 'ไม่แนะนำ/ห้ามใช้ในหญิงตั้งครรภ์ การศึกษา developmental toxicity ในหนู Wistar (สารสกัดฟ้าทะลายโจร 30–300 มก./กก. วันตั้งครรภ์ที่ 7–17) ไม่พบความพิการที่ชัดเจน แต่พบ **delayed ossification** (sternebrae/ischium) และความผิดปกติของจำนวนซี่โครงในกลุ่มขนาดสูง ตีความว่าเป็นพัฒนาการช้าชั่วคราวมากกว่าความพิการแท้จริง ข้อมูลยังจำกัดเฉพาะสัตว์ทดลอง จึงยืนยันความปลอดภัยในคนไม่ได้ [17]',
-      en: 'Not recommended / contraindicated in pregnancy. A developmental toxicity study in Wistar rats (andrographis extract 30–300 mg/kg on gestation days 7–17) found no clear malformations but showed **delayed ossification** (sternebrae/ischium) and rib-number anomalies at high doses, interpreted as transient developmental delay rather than true teratogenicity. Data are limited to animals, so human safety cannot be confirmed [17]',
-    },
+    reproductiveConsiderations: [
+      { th: '## เพศเมีย (ฤทธิ์ต้านการฝังตัว)', en: '## Female (anti-implantation effect)' },
+      {
+        th: 'การศึกษาในหนูพบว่า ethanol extract ของฟ้าทะลายโจรขนาด 200 มก./กก. มีฤทธิ์ต้านการฝังตัว (anti-implantation) สูงถึง 83.3% เมื่อให้ในระยะก่อนการฝังตัว แต่ในหนูที่ตั้งครรภ์ต่อ ลูกที่คลอดออกมาไม่มีความผิดปกติชัดเจน [30]',
+        en: 'In rats, an ethanol extract of andrographis 200 mg/kg had anti-implantation activity of up to 83.3% when given in the pre-implantation period; in rats that remained pregnant, the offspring showed no clear abnormalities [30]',
+      },
+      { th: '## เพศผู้ (ฤทธิ์ต้านการสร้างอสุจิ)', en: '## Male (antispermatogenic effect)' },
+      {
+        th: 'หนูขาวเพศผู้ที่ได้รับผงใบแห้ง 20 มก./วัน นาน 60 วัน พบการหยุดสร้างอสุจิ (cessation of spermatogenesis), การเสื่อมของ seminiferous tubules, การถดถอยของ Leydig cells และการเปลี่ยนแปลงเสื่อมของ epididymis/seminal vesicle/prostate บ่งชี้ฤทธิ์ antispermatogenic และ/หรือ antiandrogenic [31] และการศึกษาในหนู Sprague-Dawley พบว่าฤทธิ์ spermatoxic นี้**กลับคืนสภาพได้ (reversible)** หลังหยุดให้สาร [32]',
+        en: 'Male albino rats given dry leaf powder 20 mg/day for 60 days showed cessation of spermatogenesis, degeneration of the seminiferous tubules, regression of Leydig cells, and degenerative changes in the epididymis/seminal vesicle/prostate, indicating antispermatogenic and/or antiandrogenic activity [31]. In Sprague-Dawley rats this spermatoxic effect was **reversible** after stopping the extract [32]',
+      },
+      {
+        note: {
+          th: 'อย่างไรก็ตาม การศึกษาในหนู Wistar เพศผู้ที่ได้รับสารสกัดมาตรฐาน (andrographolide ≥10%) ในขนาดที่ใช้ทางคลินิก **ไม่พบผลกระทบอย่างมีนัยสำคัญ**ต่อจำนวน/การเคลื่อนที่ของอสุจิและ fertility index — ผลลบต่อระบบสืบพันธุ์เพศผู้จึงอาจสัมพันธ์กับขนาดยาที่สูงกว่าขนาดทางคลินิก [33]',
+          en: 'However, male Wistar rats given a standardized extract (≥10% andrographolide) at clinically relevant doses showed **no significant effect** on sperm count/motility or fertility index — the adverse reproductive effects may therefore be associated with doses higher than clinical ones [33]',
+        },
+      },
+    ],
+    pregnancyConsiderations: [
+      { th: 'ไม่แนะนำ/ห้ามใช้ในหญิงตั้งครรภ์ (ตามหลักป้องกันไว้ก่อน)', en: 'Not recommended / contraindicated in pregnancy (as a precaution)' },
+      { th: '## กลไก progesterone', en: '## Progesterone mechanism' },
+      {
+        th: 'การศึกษาที่มักถูกอ้างถึงให้สารสกัดฟ้าทะลายโจรขนาด 200, 600 และ 2,000 มก./กก. (สูงกว่าขนาดรักษาในมนุษย์ ~30, 90 และ 300 เท่า) ใน 19 วันแรกของการตั้งครรภ์หนู **ไม่พบผลต่อระดับ progesterone** ผู้วิจัยสรุปว่าในขนาดที่ใช้ทางการรักษา ฟ้าทะลายโจรไม่น่าก่อการยุติการตั้งครรภ์ผ่านกลไก progesterone [34]',
+        en: 'A frequently cited study gave andrographis extract 200, 600, and 2,000 mg/kg (~30, 90, and 300× the human therapeutic dose) during the first 19 days of rat pregnancy and found **no effect on progesterone levels**; the authors concluded that at therapeutic doses andrographis is unlikely to cause progesterone-mediated termination of pregnancy [34]',
+      },
+      { th: '## Developmental toxicity', en: '## Developmental toxicity' },
+      {
+        th: 'การศึกษา developmental toxicity ในหนู Wistar (สารสกัด 30–300 มก./กก. วันตั้งครรภ์ที่ 7–17) ไม่พบความพิการที่ชัดเจน แต่พบ **delayed ossification** (sternebrae/ischium) และความผิดปกติของจำนวนซี่โครงในกลุ่มขนาดสูง ตีความว่าเป็นพัฒนาการช้าชั่วคราว [17]',
+        en: 'A developmental toxicity study in Wistar rats (extract 30–300 mg/kg on gestation days 7–17) found no clear malformations but showed **delayed ossification** (sternebrae/ischium) and rib-number anomalies at high doses, interpreted as transient developmental delay [17]',
+      },
+      {
+        note: {
+          th: 'ข้อมูลยังไม่สอดคล้องกัน: พบฤทธิ์ต้านการฝังตัวในขนาดสูง (200 มก./กก.) ขณะที่การศึกษา progesterone ในขนาดสูงกว่านั้นมากกลับไม่พบผล กลไกที่ทำให้ถูกจัดเป็น potential abortifacient จึงยังไม่ได้รับการพิสูจน์ชัดเจน ควรตีความด้วยความระมัดระวัง และข้อมูลทั้งหมดมาจากสัตว์ทดลอง [30,34]',
+          en: 'Evidence is inconsistent: anti-implantation activity is seen at high doses (200 mg/kg), whereas a progesterone study at much higher doses found no effect. The mechanism behind its "potential abortifacient" label is not clearly established; interpret with caution — and all data are from animals [30,34]',
+        },
+      },
+    ],
     breastfeedingConsiderations: {
-      th: 'ไม่แนะนำให้ใช้ระหว่างให้นมบุตร เนื่องจากข้อมูลความปลอดภัยยังไม่เพียงพอ',
-      en: 'Not recommended during breastfeeding due to insufficient safety data.',
+      th: 'ยังไม่มีงานวิจัยปฐมภูมิที่ศึกษาการขับ andrographolide หรือสารออกฤทธิ์อื่นผ่านน้ำนมมนุษย์ หรือประเมินความปลอดภัยในทารกที่ดื่มนมแม่ซึ่งได้รับฟ้าทะลายโจรโดยตรง จึงเป็น**ช่องว่างความรู้ (research gap)** ที่ชัดเจน คำแนะนำให้หยุดให้นม 48 ชั่วโมงหรือ 2–3 วันที่พบในสื่อและประกาศของกระทรวงสาธารณสุขจึงเป็น**มาตรการป้องกันไว้ก่อน** มากกว่าจะมีข้อมูลเภสัชจลนศาสตร์ในน้ำนมรองรับโดยตรง — โดยรวมยังไม่แนะนำให้ใช้ระหว่างให้นมบุตร',
+      en: 'No primary research has examined excretion of andrographolide or other active constituents into human milk, or the safety of infants breastfed by mothers taking andrographis — a clear **research gap**. Advice to interrupt breastfeeding for 48 hours or 2–3 days (seen in media and Ministry of Public Health notices) is therefore **precautionary** rather than based on human-milk pharmacokinetic data. Overall, use during breastfeeding is not recommended.',
     },
 
     mechanismOfAction: {
@@ -345,6 +378,11 @@ HERB_DB.register({
       'Rajagopal S, et al. Activation of cytotoxic T lymphocyte responses and attenuation of tumor growth in vivo by Andrographis paniculata extract and andrographolide. Immunopharmacol Immunotoxicol. 2007;29(1):81-93. doi:10.1080/08923970701282726',
       'Yuandani, et al. Potential pharmacokinetic and pharmacodynamic herb-drug interactions of Andrographis paniculata: a systematic review. J Herbmed Pharmacol. 2022;11(2). doi:10.34172/jhp.2022.24',
       'WebMD. Andrographis. Ingredient monograph (based on pharmacological interaction data).',
+      'Antifertility studies of curcumin and andrographolide combination in female rats. J Coast Life Med. (ScienceDirect S2305050015000160).',
+      'Antifertility effect of Andrographis paniculata (Nees) in male albino rat. PMID:2401516.',
+      'Reversible spermatoxic effect of Andrographis paniculata methanol extract in Sprague-Dawley rats. 2016.',
+      'Allan JJ, et al. Reproductive and Fertility Effects of an Extract of Andrographis paniculata in Male Wistar Rats. Int J Toxicol. 2009;28(4):308-317. doi:10.1177/1091581809339631',
+      'Panossian A, et al. Effect of Andrographis paniculata extract on progesterone in blood plasma of pregnant rats. Phytomedicine. 1999;6(3):157-161. doi:10.1016/S0944-7113(99)80003-8',
     ],
   },
 });
