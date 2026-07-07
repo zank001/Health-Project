@@ -103,6 +103,14 @@ HERB_DB.register({
     },
 
     adrSignificant: [
+      {
+        th: '**สำคัญที่สุด: ความเสี่ยงขึ้นกับรูปแบบ** — ชนิดรับประทานเสี่ยงต่ำ ส่วนชนิดฉีด (โดยเฉพาะ IV ที่ไม่ได้มาตรฐาน) เสี่ยงสูงกว่ามาก ควรเน้นย้ำกับผู้ที่ถามเรื่องฉีดเพื่อความงาม [11]',
+        en: '**Most important: risk is route-dependent** — oral is low-risk, whereas injectable forms (especially unregulated IV) carry much higher risk; emphasize this to anyone asking about cosmetic injections [11]',
+      },
+      {
+        th: '**ชนิดรับประทาน:** ทนได้ดี — RCT 6 เดือน (250–1,000 มก./วัน) ไม่พบ SAE; พบอาการ GI เล็กน้อยใน 4 สัปดาห์แรกและหายเอง ยังไม่มี toxic dose/overdose ที่ชัดเจน [11]',
+        en: '**Oral:** well tolerated — a 6-month RCT (250–1,000 mg/day) found no SAEs; mild GI symptoms may occur in the first 4 weeks and resolve on their own; no defined toxic dose/overdose [11]',
+      },
       { th: '## ชนิดฉีด (IV/IM) เพื่อความงาม — ความเสี่ยงร้ายแรง', en: '## Injectable (IV/IM) for cosmetic use — serious risks' },
       {
         th: '- **SIRS/ช็อก:** รายงานผู้ป่วยหญิง 30 ปี หลังได้รับ IV glutathione ขนาดสูง — ช็อก (SBP 50–60 mmHg), ไข้ >41°C, ตับวายเฉียบพลัน (ALT 311), coagulopathy; สงสัย endotoxin contamination [1]\n- **SJS/TEN:** รายงานผู้ป่วยหญิง 33 ปี หลัง IV glutathione + vitamin C/D — ผิวลอก 6.5% ของพื้นผิวกาย ต้องรักษาใน burn center; Philippine FDA เตือนความเชื่อมโยงตั้งแต่ปี 2019 [2]\n- **Endotoxin contamination:** ผู้ป่วย 7 ราย เกิด probable endotoxin poisoning จาก infusion ที่ปนเปื้อน — ชี้ว่าความเสี่ยงหลักคือการปนเปื้อน [3]\n- **Anaphylaxis/ตับ:** การศึกษา placebo-controlled หญิง 32 ราย (IV glutathione + vitamin C) พบผลไม่พึงประสงค์ทุกราย, ตับผิดปกติ 8 ราย, anaphylactic shock 1 ราย [4]',
@@ -118,6 +126,34 @@ HERB_DB.register({
       {
         th: 'กลูตาไธโอนที่รับประทานถูกย่อยเป็น cysteine, glycine และ glutamate ที่ jejunum จึงไม่เพิ่มระดับกลูตาไธโอนในเซลล์อย่างมีนัยสำคัญ — เป็นข้อจำกัดสำคัญที่ควรแจ้งผู้ใช้ก่อนแนะนำผลิตภัณฑ์ชนิดรับประทาน [7]',
         en: 'Oral glutathione is degraded into cysteine, glycine, and glutamate in the jejunum, so it does not significantly raise intracellular glutathione — an important limitation to communicate before recommending oral products [7]',
+      },
+    ],
+    adrList: [
+      {
+        th: '**ชนิดรับประทาน (oral):** คลื่นไส้ ท้องอืด ปวดเกร็งท้อง — ระดับเล็กน้อย พบใน 4 สัปดาห์แรก หายได้เอง [11]',
+        en: '**Oral:** nausea, bloating, abdominal cramping — mild, in the first 4 weeks, self-resolving [11]',
+      },
+      {
+        table: {
+          headers: [
+            { th: 'ชนิดฉีด: อาการ', en: 'Injectable: reaction' },
+            { th: 'ความรุนแรง', en: 'Severity' },
+          ],
+          rows: [
+            [{ th: 'Anaphylactic shock', en: 'Anaphylactic shock' }, { th: 'รุนแรงมาก (อันตรายถึงชีวิต) [4]', en: 'Very severe (life-threatening) [4]' }],
+            [{ th: 'Stevens-Johnson syndrome / TEN', en: 'Stevens-Johnson syndrome / TEN' }, { th: 'รุนแรงมาก [2]', en: 'Very severe [2]' }],
+            [{ th: 'SIRS', en: 'SIRS' }, { th: 'รุนแรงมาก [1]', en: 'Very severe [1]' }],
+            [{ th: 'ตับทำงานผิดปกติ (deranged LFT)', en: 'Deranged liver function' }, { th: 'รุนแรง [4]', en: 'Severe [4]' }],
+            [{ th: 'ผื่น/ลมพิษ, แน่นหน้าอก/หายใจลำบาก', en: 'Rash/urticaria, chest tightness/dyspnea' }, { th: 'ปานกลาง–รุนแรง [15]', en: 'Moderate–severe [15]' }],
+            [{ th: 'ปฏิกิริยาตำแหน่งฉีด, ปวดศีรษะ, เวียนศีรษะ, คลื่นไส้', en: 'Injection-site reaction, headache, dizziness, nausea' }, { th: 'เล็กน้อย [15]', en: 'Mild [15]' }],
+          ],
+        },
+      },
+      {
+        note: {
+          th: 'อาการฉีดที่มีหลักฐานระดับ case report/series ผ่าน peer review: SIRS, SJS/TEN, anaphylaxis, ตับผิดปกติ [1,2,4]; อาการอื่นบางส่วนมาจาก clinical guide ที่ไม่ผ่าน peer review [15]',
+          en: 'Peer-reviewed case-report/series evidence: SIRS, SJS/TEN, anaphylaxis, deranged LFT [1,2,4]; some other items are from a non-peer-reviewed clinical guide [15]',
+        },
       },
     ],
 
@@ -146,6 +182,7 @@ HERB_DB.register({
       'KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease.',
       'ESPEN guideline — parenteral glutamine contraindication in acute kidney injury / kidney failure (cited in droracle.ai).',
       'Glutathione in the treatment of chronic fatty liver diseases. 1994. PMID:7569285.',
+      'Apni Care clinical guide (non-peer-reviewed). 2025.',
     ],
   },
 });
