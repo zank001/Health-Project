@@ -39,6 +39,69 @@ HERB_DB.register({
       en: 'Dietary supplement; antioxidant (a tripeptide: glutamate–cysteine–glycine)',
     },
 
+    adultDosing: [
+      { th: '## ผิวขาว / ต้านอนุมูลอิสระ (ชนิดรับประทาน)', en: '## Skin-lightening / antioxidant (oral)' },
+      {
+        th: '- 500 มก./วัน (แบ่ง 250 มก. เช้า–เย็น) นาน 4 สัปดาห์ [8]\n- 250 มก./วัน (รูป reduced หรือ oxidized) นาน 12 สัปดาห์ [9]',
+        en: '- 500 mg/day (250 mg twice daily) for 4 weeks [8]\n- 250 mg/day (reduced or oxidized form) for 12 weeks [9]',
+      },
+      { th: '## ป้องกันพิษต่อไต/เส้นประสาทจากเคมีบำบัด (ชนิดฉีด IV)', en: '## Chemotherapy-induced neuro/nephrotoxicity (IV)' },
+      {
+        th: '1,000–1,800 มก./วัน IV (ร่วมกับ oxaliplatin หรือ cisplatin) เพื่อป้องกันพิษต่อไตและเส้นประสาท [10]',
+        en: '1,000–1,800 mg/day IV (with oxaliplatin or cisplatin) to prevent renal and nerve toxicity [10]',
+      },
+      {
+        note: {
+          th: '**ข้อจำกัดด้านชีวปริมาณออกฤทธิ์:** แม้ให้ชนิดรับประทานสูงถึง 3 กรัม ก็ไม่เพิ่มระดับ glutathione ในพลาสมาอย่างมีนัยสำคัญ (ถูกย่อยโดย gamma-glutamyltransferase ที่ลำไส้และตับ) จึงยังไม่มีข้อบ่งใช้ทางคลินิกที่ชัดเจนสำหรับชนิดรับประทานในผู้ใหญ่ทั่วไป [11]',
+          en: '**Bioavailability limitation:** even oral doses up to 3 g do not significantly raise plasma glutathione (degraded by intestinal and hepatic gamma-glutamyltransferase); there is no established clinical indication for oral glutathione in the general adult population [11]',
+        },
+      },
+    ],
+    adultKidney: [
+      { th: '## ผู้ป่วยฟอกเลือด (hemodialysis)', en: '## Hemodialysis patients' },
+      {
+        th: '- Reduced L-glutathione ชนิดรับประทาน 1,000 มก./วัน นาน 4 สัปดาห์ ลด TNF-α อย่างมีนัยสำคัญ (แต่ไม่ลด hs-CRP หรือ neutrophil–lymphocyte ratio) — ยังเป็น experimental/นอกแนวทาง [11]\n- Reduced glutathione ชนิดฉีด 1,200 มก. นาน 180 วัน เพิ่ม hematocrit/hemoglobin และลด reticulocyte (ผลสูงสุดวันที่ 120; ประโยชน์หายไปหลังหยุด) [11]',
+        en: '- Oral reduced L-glutathione 1,000 mg/day for 4 weeks significantly lowered TNF-α (but not hs-CRP or the neutrophil–lymphocyte ratio) — still experimental/off-guideline [11]\n- Parenteral reduced glutathione 1,200 mg for 180 days increased hematocrit/hemoglobin and lowered reticulocyte count (peak at day 120; benefit lost after stopping) [11]',
+      },
+      { th: '## ผู้ป่วยล้างไตทางช่องท้อง (peritoneal dialysis)', en: '## Peritoneal dialysis patients' },
+      {
+        th: 'Glutathione prodrug OTZ ชนิดรับประทาน 0.5 กรัม วันละ 3 ครั้ง (พร้อมมื้ออาหาร) เพิ่มระดับ glutathione ในเลือดรวมที่วันที่ 7 และ 14 อย่างมีนัยสำคัญ ไม่พบเหตุการณ์ไม่พึงประสงค์ร้ายแรง (RCT n=20) [11]',
+        en: 'Oral glutathione prodrug OTZ 0.5 g three times daily (with meals) significantly increased whole-blood glutathione at days 7 and 14, with no serious adverse events (RCT, n=20) [11]',
+      },
+      { th: '## CKD ที่ยังไม่ฟอกไต', en: '## Non-dialysis CKD' },
+      {
+        th: 'ไม่มีคำแนะนำขนาดยาที่ชัดเจน — แนวทาง KDIGO 2024 ไม่ระบุการเสริม glutathione ในการดูแล CKD มาตรฐาน จึงไม่แนะนำให้ใช้ตามปกติ [12]',
+        en: 'No established dosing — the KDIGO 2024 guideline does not include glutathione supplementation in standard CKD care, so routine use is not recommended [12]',
+      },
+      {
+        note: {
+          th: '⚠️ **ข้อควรระวังการสับสน:** high-dose parenteral **glutamine** (คนละสารกับ glutathione) เป็นข้อห้ามเด็ดขาดในผู้ป่วย acute kidney injury หรือ CKD ที่มีไตวาย — ต้องแยกให้ชัดเมื่อทบทวนเวชระเบียน [13]',
+          en: '⚠️ **Do not confuse:** high-dose parenteral **glutamine** (a different substance from glutathione) is an absolute contraindication in acute kidney injury or CKD with kidney failure — distinguish carefully when reviewing records [13]',
+        },
+      },
+    ],
+    adultLiver: [
+      {
+        th: 'โรคไขมันพอกตับเรื้อรัง: glutathione ชนิดฉีด IV 1,800 มก./วัน ให้ผลดีที่สุดในการปรับปรุงค่าการทำงานของตับ (bilirubin, AST, ALT, GGT) และลด malondialdehyde แม้หลังหยุดหลายเดือน [14]',
+        en: 'Chronic fatty liver disease: IV glutathione 1,800 mg/day gave the best improvement in liver function tests (bilirubin, AST, ALT, GGT) and reduced malondialdehyde, persisting for months after stopping [14]',
+      },
+      {
+        note: {
+          th: '**ข้อจำกัด:** ข้อมูลเก่า (1994) และเป็นชนิดฉีด IV ซึ่งมีความเสี่ยงสูง (SIRS, SJS/TEN — ดูหัวข้อ Adverse Reactions) จึงต้องชั่งประโยชน์–ความเสี่ยงเป็นรายบุคคล และยังไม่มีขนาดยาที่ปรับตามความรุนแรงของตับ (เช่น Child-Pugh)',
+          en: '**Limitations:** the data are old (1994) and use the high-risk IV route (SIRS, SJS/TEN — see Adverse Reactions); benefit vs. risk must be weighed individually, and no severity-adjusted (e.g. Child-Pugh) dosing exists',
+        },
+      },
+    ],
+    olderAdult: {
+      th: 'ไม่พบ RCT ที่กำหนดขนาดยาเฉพาะสำหรับผู้สูงอายุ การศึกษาในผู้ใหญ่ทั้งหมดไม่ได้แบ่งกลุ่มอายุหรือปรับขนาดตามการทำงานของไต/ตับที่ลดลงตามวัย จึงยังไม่มีข้อมูลเชิงประจักษ์รองรับการปรับขนาดในกลุ่มนี้',
+      en: 'No RCT has defined a specific dose for older adults. Adult studies did not stratify by age or adjust for age-related decline in renal/hepatic function, so there is no evidence to guide dose adjustment in this group.',
+    },
+
+    pediatricDosing: {
+      th: 'ไม่มี RCT รองรับการใช้ glutathione เสริมในเด็กสำหรับข้อบ่งใช้ทั่วไป (ผิวขาว/ต้านอนุมูลอิสระ) มีเพียง case series ในบริบทออทิสซึม (ASD) ที่ใช้ภายใต้การดูแลของแพทย์เฉพาะทาง ไม่ใช่ขนาดเสริมอาหารทั่วไป และไม่พบข้อมูลการปรับขนาดในเด็กที่มีภาวะไตหรือตับบกพร่อง',
+      en: 'No RCT supports glutathione supplementation in children for general indications (skin-lightening/antioxidant). Only case series in autism spectrum disorder (ASD), used under specialist supervision — not general supplement dosing — exist, and there are no data on dose adjustment in children with renal or hepatic impairment.',
+    },
+
     adrSignificant: [
       { th: '## ชนิดฉีด (IV/IM) เพื่อความงาม — ความเสี่ยงร้ายแรง', en: '## Injectable (IV/IM) for cosmetic use — serious risks' },
       {
@@ -76,6 +139,13 @@ HERB_DB.register({
       'US Food and Drug Administration. FDA highlights concerns with using the dietary ingredient glutathione to compound sterile injectable drugs. 2019.',
       'The Possible Toxic Effects of Glutathione Intramuscular Injection on Ovarian Tissue in Female Albino Rats. Menoufia Med J. 2023.',
       'Oral glutathione bioavailability limitation (jejunal degradation to constituent amino acids) — cited in Johnson JS, et al. J Burn Care Res. 2025;46(3):652-655.',
+      'Arjinpathana N, Asawanonda P. Glutathione as an oral whitening agent: a randomized, double-blind, placebo-controlled study. J Dermatolog Treat. 2012;23(2):97-102.',
+      'Weschawalit S, et al. Glutathione and its antiaging and antimelanogenic effects. Clin Cosmet Investig Dermatol. 2017;10:147-153.',
+      'Vinmec. Glutathione: Uses, Dosage, Side Effects. 2024.',
+      'droracle.ai clinical evidence summary — oral glutathione bioavailability and use in dialysis/CKD (citing healthy-volunteer, hemodialysis, and peritoneal dialysis studies). 2024–2026.',
+      'KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease.',
+      'ESPEN guideline — parenteral glutamine contraindication in acute kidney injury / kidney failure (cited in droracle.ai).',
+      'Glutathione in the treatment of chronic fatty liver diseases. 1994. PMID:7569285.',
     ],
   },
 });
